@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.0",
   "name": "language-opencl",
   "description": "Atom language support for OpenCL",
   "repository": {
@@ -11,8 +11,7 @@
     "url": "https://github.com/podgib/atom-opencl/issues"
   },
   "engines": {
-    "atom": "*",
-    "node": "*"
+    "atom": "*"
   },
   "homepage": "https://github.com/podgib/atom-opencl",
   "keywords": [
@@ -24,5 +23,4 @@
   ],
   "readme": "# language-opencl package\n\nAdds syntax highlighting and snippets to OpenCL C files in Atom.\n",
   "readmeFilename": "README.md",
-  "_id": "language-opencl@0.0.1",
 }
