@@ -22,5 +22,5 @@
     "syntax"
   ],
   "readme": "# language-opencl package\n\nAdds syntax highlighting and snippets to OpenCL C files in Atom.\n",
-  "readmeFilename": "README.md",
+  "readmeFilename": "README.md"
 }
