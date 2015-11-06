@@ -1,4 +1,2764 @@
 '.source.opencl':
+  '#ifndef … #define … #endif':
+    'prefix': 'def'
+    'body': '#ifndef ${1:SYMBOL}\n#define $1 ${2:value}\n#endif'
+  '#include <>':
+    'prefix': 'Inc'
+    'body': '#include <${1:.h}>'
+  '#include ""':
+    'prefix': 'inc'
+    'body': '#include "${1:.h}"'
+  '#pragma mark':
+    'prefix': 'mark'
+    'body': '#if 0\n${1:#pragma mark -\n}#pragma mark $2\n#endif\n\n$0'
+  'Header Include-Guard':
+    'prefix': 'once'
+    'body': '#ifndef ${1:SYMBOL}\n#define $1\n\n${2}\n\n#endif /* end of include guard: $1 */\n'
+  'Typedef':
+    'prefix': 'td'
+    'body': 'typedef ${1:int} ${2:MyCustomType};'
+  'case':
+    'prefix': 'cs'
+    'body': 'case ${1:/* value */}:$0'
+	'Attribute Qualifer':
+	  'body': '__attribute__($1)'
+	  'prefix': '__attribute__'
+	'Kernel Function':
+	  'body': '__kernel void ${1:foo}(${2:arguments})\n{\n\t${0:/* code */}\n}'
+	  'prefix': '__kernel'
+	'Absolute':
+	  'body': 'abs(${1:x})'
+	  'prefix': 'abs'
+	'Absolute Difference':
+	  'body': 'abs_diff(${1:x}, ${2:y})'
+	  'prefix': 'abs_diff'
+	'Arc cosine':
+	  'body': 'acos(${1:x})'
+	  'prefix': 'acos'
+	'Inverse Hyperbolic Cosine':
+	  'body': 'acosh(${1:x})'
+	  'prefix': 'acosh'
+	'Arc Cosine Over Pi':
+	  'body': 'acospi(${1:x})'
+	  'prefix': 'acospi'
+	'Add Saturate':
+	  'body': 'add_sat(${1:x}, ${2:y})'
+	  'prefix': 'add_sat'
+	'Attribute Aligned':
+	  'body': 'aligned($1)'
+	  'prefix': 'aligned'
+	'Test For All Most Significant Bits Are Set':
+	  'body': 'all(${1:x})'
+	  'prefix': 'all'
+	'Returns 1 Any Most Significant Bit Is Set':
+	  'body': 'any(${1:x})'
+	  'prefix': 'any'
+	'Reinterpret Type As char':
+	  'body': 'as_char(${1:x})'
+	  'prefix': 'as_char'
+	'Reinterpret Type As char16':
+	  'body': 'as_char16(${1:x})'
+	  'prefix': 'as_char16'
+	'Reinterpret Type As char2':
+	  'body': 'as_char2(${1:x})'
+	  'prefix': 'as_char2'
+	'Reinterpret Type As char3':
+	  'body': 'as_char3(${1:x})'
+	  'prefix': 'as_char3'
+	'Reinterpret Type As char4':
+	  'body': 'as_char4(${1:x})'
+	  'prefix': 'as_char4'
+	'Reinterpret Type As char8':
+	  'body': 'as_char8(${1:x})'
+	  'prefix': 'as_char8'
+	'Reinterpret Type As double':
+	  'body': 'as_double(${1:x})'
+	  'prefix': 'as_double'
+	'Reinterpret Type As double16':
+	  'body': 'as_double16(${1:x})'
+	  'prefix': 'as_double16'
+	'Reinterpret Type As double2':
+	  'body': 'as_double2(${1:x})'
+	  'prefix': 'as_double2'
+	'Reinterpret Type As double3':
+	  'body': 'as_double3(${1:x})'
+	  'prefix': 'as_double3'
+	'Reinterpret Type As double4':
+	  'body': 'as_double4(${1:x})'
+	  'prefix': 'as_double4'
+	'Reinterpret Type As double8':
+	  'body': 'as_double8(${1:x})'
+	  'prefix': 'as_double8'
+	'Reinterpret Type As float':
+	  'body': 'as_float(${1:x})'
+	  'prefix': 'as_float'
+	'Reinterpret Type As float16':
+	  'body': 'as_float16(${1:x})'
+	  'prefix': 'as_float16'
+	'Reinterpret Type As float2':
+	  'body': 'as_float2(${1:x})'
+	  'prefix': 'as_float2'
+	'Reinterpret Type As float3':
+	  'body': 'as_float3(${1:x})'
+	  'prefix': 'as_float3'
+	'Reinterpret Type As float4':
+	  'body': 'as_float4(${1:x})'
+	  'prefix': 'as_float4'
+	'Reinterpret Type As float8':
+	  'body': 'as_float8(${1:x})'
+	  'prefix': 'as_float8'
+	'Reinterpret Type As int':
+	  'body': 'as_int(${1:x})'
+	  'prefix': 'as_int'
+	'Reinterpret Type As int16':
+	  'body': 'as_int16(${1:x})'
+	  'prefix': 'as_int16'
+	'Reinterpret Type As int2':
+	  'body': 'as_int2(${1:x})'
+	  'prefix': 'as_int2'
+	'Reinterpret Type As int3':
+	  'body': 'as_int3(${1:x})'
+	  'prefix': 'as_int3'
+	'Reinterpret Type As int4':
+	  'body': 'as_int4(${1:x})'
+	  'prefix': 'as_int4'
+	'Reinterpret Type As int8':
+	  'body': 'as_int8(${1:x})'
+	  'prefix': 'as_int8'
+	'Reinterpret Type As long':
+	  'body': 'as_long(${1:x})'
+	  'prefix': 'as_long'
+	'Reinterpret Type As long16':
+	  'body': 'as_long16(${1:x})'
+	  'prefix': 'as_long16'
+	'Reinterpret Type As long2':
+	  'body': 'as_long2(${1:x})'
+	  'prefix': 'as_long2'
+	'Reinterpret Type As long3':
+	  'body': 'as_long3(${1:x})'
+	  'prefix': 'as_long3'
+	'Reinterpret Type As long4':
+	  'body': 'as_long4(${1:x})'
+	  'prefix': 'as_long4'
+	'Reinterpret Type As long8':
+	  'body': 'as_long8(${1:x})'
+	  'prefix': 'as_long8'
+	'Reinterpret Type As short':
+	  'body': 'as_short(${1:x})'
+	  'prefix': 'as_short'
+	'Reinterpret Type As short16':
+	  'body': 'as_short16(${1:x})'
+	  'prefix': 'as_short16'
+	'Reinterpret Type As short2':
+	  'body': 'as_short2(${1:x})'
+	  'prefix': 'as_short2'
+	'Reinterpret Type As short3':
+	  'body': 'as_short3(${1:x})'
+	  'prefix': 'as_short3'
+	'Reinterpret Type As short4':
+	  'body': 'as_short4(${1:x})'
+	  'prefix': 'as_short4'
+	'Reinterpret Type As short8':
+	  'body': 'as_short8(${1:x})'
+	  'prefix': 'as_short8'
+	'Reinterpret Type As uchar':
+	  'body': 'as_uchar(${1:x})'
+	  'prefix': 'as_uchar'
+	'Reinterpret Type As uchar16':
+	  'body': 'as_uchar16(${1:x})'
+	  'prefix': 'as_uchar16'
+	'Reinterpret Type As uchar2':
+	  'body': 'as_uchar2(${1:x})'
+	  'prefix': 'as_uchar2'
+	'Reinterpret Type As uchar3':
+	  'body': 'as_uchar3(${1:x})'
+	  'prefix': 'as_uchar3'
+	'Reinterpret Type As uchar4':
+	  'body': 'as_uchar4(${1:x})'
+	  'prefix': 'as_uchar4'
+	'Reinterpret Type As uchar8':
+	  'body': 'as_uchar8(${1:x})'
+	  'prefix': 'as_uchar8'
+	'Reinterpret Type As uint':
+	  'body': 'as_uint(${1:x})'
+	  'prefix': 'as_uint'
+	'Reinterpret Type As uint16':
+	  'body': 'as_uint16(${1:x})'
+	  'prefix': 'as_uint16'
+	'Reinterpret Type As uint2':
+	  'body': 'as_uint2(${1:x})'
+	  'prefix': 'as_uint2'
+	'Reinterpret Type As uint3':
+	  'body': 'as_uint3(${1:x})'
+	  'prefix': 'as_uint3'
+	'Reinterpret Type As uint4':
+	  'body': 'as_uint4(${1:x})'
+	  'prefix': 'as_uint4'
+	'Reinterpret Type As uint8':
+	  'body': 'as_uint8(${1:x})'
+	  'prefix': 'as_uint8'
+	'Reinterpret Type As ulong':
+	  'body': 'as_ulong(${1:x})'
+	  'prefix': 'as_ulong'
+	'Reinterpret Type As ulong16':
+	  'body': 'as_ulong16(${1:x})'
+	  'prefix': 'as_ulong16'
+	'Reinterpret Type As ulong2':
+	  'body': 'as_ulong2(${1:x})'
+	  'prefix': 'as_ulong2'
+	'Reinterpret Type As ulong3':
+	  'body': 'as_ulong3(${1:x})'
+	  'prefix': 'as_ulong3'
+	'Reinterpret Type As ulong4':
+	  'body': 'as_ulong4(${1:x})'
+	  'prefix': 'as_ulong4'
+	'Reinterpret Type As ulong8':
+	  'body': 'as_ulong8(${1:x})'
+	  'prefix': 'as_ulong8'
+	'Reinterpret Type As ushort':
+	  'body': 'as_ushort(${1:x})'
+	  'prefix': 'as_ushort'
+	'Reinterpret Type As ushort16':
+	  'body': 'as_ushort16(${1:x})'
+	  'prefix': 'as_ushort16'
+	'Reinterpret Type As ushort2':
+	  'body': 'as_ushort2(${1:x})'
+	  'prefix': 'as_ushort2'
+	'Reinterpret Type As ushort3':
+	  'body': 'as_ushort3(${1:x})'
+	  'prefix': 'as_ushort3'
+	'Reinterpret Type As ushort4':
+	  'body': 'as_ushort4(${1:x})'
+	  'prefix': 'as_ushort4'
+	'Reinterpret Type As ushort8':
+	  'body': 'as_ushort8(${1:x})'
+	  'prefix': 'as_ushort8'
+	'Arc Sine':
+	  'body': 'asin(${1:x})'
+	  'prefix': 'asin'
+	'Inverse Hyperbolic Sine':
+	  'body': 'asinh(${1:x})'
+	  'prefix': 'asinh'
+	'Arc Sine Over Pi':
+	  'body': 'asinpi(${1:x})'
+	  'prefix': 'asinpi'
+	'Perform An Async Copy':
+	  'body': 'async_work_group_copy(${1:dst}, ${2:src}, ${3:num_gentypes}, ${4:event})'
+	  'prefix': 'async_work_group_copy'
+	'Performs An Async Gather Of Elements':
+	  'body': 'async_work_group_strided_copy(${1:dst}, ${2:src}, ${3:num_gentypes}, ${4:src_stride}, ${5:event})'
+	  'prefix': 'async_work_group_strided_copy'
+	'Arc Tangent':
+	  'body': 'atan(${1:x_over_y})'
+	  'prefix': 'atan'
+	'Arc Tangent (y/x)':
+	  'body': 'atan2(${1:y}, ${2:x})'
+	  'prefix': 'atan2'
+	'Hyperbolic Arg Tangent':
+	  'body': 'atanh(${1:x})'
+	  'prefix': 'atanh'
+	'Arc Tangent Over Pi':
+	  'body': 'atanpi(${1:x})'
+	  'prefix': 'atanpi'
+	'Arc Tangent (y, x) Over Pi':
+	  'body': 'atan2pi(${1:y}, ${2:x})'
+	  'prefix': 'atan2pi'
+	'All Work Items Must Execute Barrier Funcion Before Execution Continues':
+	  'body': 'barrier(${1:flags})'
+	  'prefix': 'barrier'
+	'Bit Select':
+	  'body': 'bitselect(${1:a}, ${2:b}, ${3:c})'
+	  'prefix': 'bitselect'
+	'Cube-Root':
+	  'body': 'cbrt(${1:x})'
+	  'prefix': 'cbrt'
+	'Round To Integer Toward + Infinity':
+	  'body': 'ceil(${1:x})'
+	  'prefix': 'ceil'
+	'Clamp':
+	  'body': 'clamp(${1:x}, ${2:minval}, ${3:maxval})'
+	  'prefix': 'clamp'
+	'Count Leading Zero\'s':
+	  'body': 'clz(${1:x})'
+	  'prefix': 'clz'
+	'Explixit Type Conversion To char':
+	  'body': 'convert_char(${1:x})'
+	  'prefix': 'convert_char'
+	'Explixit Type Conversion To char Round To Nearest Even':
+	  'body': 'convert_char_rte(${1:x})'
+	  'prefix': 'convert_char_rte'
+	'Explixit Type Conversion To char Round Toward Nevagite Infinity':
+	  'body': 'convert_char_rtn(${1:x})'
+	  'prefix': 'convert_char_rtn'
+	'Explixit Type Conversion To char Round Toward Positive Infinity':
+	  'body': 'convert_char_rtp(${1:x})'
+	  'prefix': 'convert_char_rtp'
+	'Explixit Type Conversion To char Round Towards Zero':
+	  'body': 'convert_char_rtz(${1:x})'
+	  'prefix': 'convert_char_rtz'
+	'Explixit Type Conversion To char Saturated':
+	  'body': 'convert_char_sat(${1:x})'
+	  'prefix': 'convert_char_sat'
+	'Explixit Type Conversion To char Saturated Round To Nearest Even':
+	  'body': 'convert_char_sat_rte(${1:x})'
+	  'prefix': 'convert_char_sat_rte'
+	'Explixit Type Conversion To char Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_char_sat_rtn(${1:x})'
+	  'prefix': 'convert_char_sat_rtn'
+	'Explixit Type Conversion To char Saturated Round Toward Positive Infinity':
+	  'body': 'convert_char_sat_rtp(${1:x})'
+	  'prefix': 'convert_char_sat_rtp'
+	'Explixit Type Conversion To char Saturated Round Towards Zero':
+	  'body': 'convert_char_sat_rtz(${1:x})'
+	  'prefix': 'convert_char_sat_rtz'
+	'Explixit Type Conversion To char16':
+	  'body': 'convert_char16(${1:x})'
+	  'prefix': 'convert_char16'
+	'Explixit Type Conversion To char16 Round To Nearest Even':
+	  'body': 'convert_char16_rte(${1:x})'
+	  'prefix': 'convert_char16_rte'
+	'Explixit Type Conversion To char16 Round Toward Nevagite Infinity':
+	  'body': 'convert_char16_rtn(${1:x})'
+	  'prefix': 'convert_char16_rtn'
+	'Explixit Type Conversion To char16 Round Toward Positive Infinity':
+	  'body': 'convert_char16_rtp(${1:x})'
+	  'prefix': 'convert_char16_rtp'
+	'Explixit Type Conversion To char16 Round Towards Zero':
+	  'body': 'convert_char16_rtz(${1:x})'
+	  'prefix': 'convert_char16_rtz'
+	'Explixit Type Conversion To char16 Saturated':
+	  'body': 'convert_char16_sat(${1:x})'
+	  'prefix': 'convert_char16_sat'
+	'Explixit Type Conversion To char16 Saturated Round To Nearest Even':
+	  'body': 'convert_char16_sat_rte(${1:x})'
+	  'prefix': 'convert_char16_sat_rte'
+	'Explixit Type Conversion To char16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_char16_sat_rtn(${1:x})'
+	  'prefix': 'convert_char16_sat_rtn'
+	'Explixit Type Conversion To char16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_char16_sat_rtp(${1:x})'
+	  'prefix': 'convert_char16_sat_rtp'
+	'Explixit Type Conversion To char16 Saturated Round Towards Zero':
+	  'body': 'convert_char16_sat_rtz(${1:x})'
+	  'prefix': 'convert_char16_sat_rtz'
+	'Explixit Type Conversion To char2':
+	  'body': 'convert_char2(${1:x})'
+	  'prefix': 'convert_char2'
+	'Explixit Type Conversion To char2 Round To Nearest Even':
+	  'body': 'convert_char2_rte(${1:x})'
+	  'prefix': 'convert_char2_rte'
+	'Explixit Type Conversion To char2 Round Toward Nevagite Infinity':
+	  'body': 'convert_char2_rtn(${1:x})'
+	  'prefix': 'convert_char2_rtn'
+	'Explixit Type Conversion To char2 Round Toward Positive Infinity':
+	  'body': 'convert_char2_rtp(${1:x})'
+	  'prefix': 'convert_char2_rtp'
+	'Explixit Type Conversion To char2 Round Towards Zero':
+	  'body': 'convert_char2_rtz(${1:x})'
+	  'prefix': 'convert_char2_rtz'
+	'Explixit Type Conversion To char2 Saturated':
+	  'body': 'convert_char2_sat(${1:x})'
+	  'prefix': 'convert_char2_sat'
+	'Explixit Type Conversion To char2 Saturated Round To Nearest Even':
+	  'body': 'convert_char2_sat_rte(${1:x})'
+	  'prefix': 'convert_char2_sat_rte'
+	'Explixit Type Conversion To char2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_char2_sat_rtn(${1:x})'
+	  'prefix': 'convert_char2_sat_rtn'
+	'Explixit Type Conversion To char2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_char2_sat_rtp(${1:x})'
+	  'prefix': 'convert_char2_sat_rtp'
+	'Explixit Type Conversion To char2 Saturated Round Towards Zero':
+	  'body': 'convert_char2_sat_rtz(${1:x})'
+	  'prefix': 'convert_char2_sat_rtz'
+	'Explixit Type Conversion To char3':
+	  'body': 'convert_char3(${1:x})'
+	  'prefix': 'convert_char3'
+	'Explixit Type Conversion To char3 Round To Nearest Even':
+	  'body': 'convert_char3_rte(${1:x})'
+	  'prefix': 'convert_char3_rte'
+	'Explixit Type Conversion To char3 Round Toward Nevagite Infinity':
+	  'body': 'convert_char3_rtn(${1:x})'
+	  'prefix': 'convert_char3_rtn'
+	'Explixit Type Conversion To char3 Round Toward Positive Infinity':
+	  'body': 'convert_char3_rtp(${1:x})'
+	  'prefix': 'convert_char3_rtp'
+	'Explixit Type Conversion To char3 Round Towards Zero':
+	  'body': 'convert_char3_rtz(${1:x})'
+	  'prefix': 'convert_char3_rtz'
+	'Explixit Type Conversion To char3 Saturated':
+	  'body': 'convert_char3_sat(${1:x})'
+	  'prefix': 'convert_char3_sat'
+	'Explixit Type Conversion To char3 Saturated Round To Nearest Even':
+	  'body': 'convert_char3_sat_rte(${1:x})'
+	  'prefix': 'convert_char3_sat_rte'
+	'Explixit Type Conversion To char3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_char3_sat_rtn(${1:x})'
+	  'prefix': 'convert_char3_sat_rtn'
+	'Explixit Type Conversion To char3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_char3_sat_rtp(${1:x})'
+	  'prefix': 'convert_char3_sat_rtp'
+	'Explixit Type Conversion To char3 Saturated Round Towards Zero':
+	  'body': 'convert_char3_sat_rtz(${1:x})'
+	  'prefix': 'convert_char3_sat_rtz'
+	'Explixit Type Conversion To char4':
+	  'body': 'convert_char4(${1:x})'
+	  'prefix': 'convert_char4'
+	'Explixit Type Conversion To char4 Round To Nearest Even':
+	  'body': 'convert_char4_rte(${1:x})'
+	  'prefix': 'convert_char4_rte'
+	'Explixit Type Conversion To char4 Round Toward Nevagite Infinity':
+	  'body': 'convert_char4_rtn(${1:x})'
+	  'prefix': 'convert_char4_rtn'
+	'Explixit Type Conversion To char4 Round Toward Positive Infinity':
+	  'body': 'convert_char4_rtp(${1:x})'
+	  'prefix': 'convert_char4_rtp'
+	'Explixit Type Conversion To char4 Round Towards Zero':
+	  'body': 'convert_char4_rtz(${1:x})'
+	  'prefix': 'convert_char4_rtz'
+	'Explixit Type Conversion To char4 Saturated':
+	  'body': 'convert_char4_sat(${1:x})'
+	  'prefix': 'convert_char4_sat'
+	'Explixit Type Conversion To char4 Saturated Round To Nearest Even':
+	  'body': 'convert_char4_sat_rte(${1:x})'
+	  'prefix': 'convert_char4_sat_rte'
+	'Explixit Type Conversion To char4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_char4_sat_rtn(${1:x})'
+	  'prefix': 'convert_char4_sat_rtn'
+	'Explixit Type Conversion To char4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_char4_sat_rtp(${1:x})'
+	  'prefix': 'convert_char4_sat_rtp'
+	'Explixit Type Conversion To char4 Saturated Round Towards Zero':
+	  'body': 'convert_char4_sat_rtz(${1:x})'
+	  'prefix': 'convert_char4_sat_rtz'
+	'Explixit Type Conversion To char8':
+	  'body': 'convert_char8(${1:x})'
+	  'prefix': 'convert_char8'
+	'Explixit Type Conversion To char8 Round To Nearest Even':
+	  'body': 'convert_char8_rte(${1:x})'
+	  'prefix': 'convert_char8_rte'
+	'Explixit Type Conversion To char8 Round Toward Nevagite Infinity':
+	  'body': 'convert_char8_rtn(${1:x})'
+	  'prefix': 'convert_char8_rtn'
+	'Explixit Type Conversion To char8 Round Toward Positive Infinity':
+	  'body': 'convert_char8_rtp(${1:x})'
+	  'prefix': 'convert_char8_rtp'
+	'Explixit Type Conversion To char8 Round Towards Zero':
+	  'body': 'convert_char8_rtz(${1:x})'
+	  'prefix': 'convert_char8_rtz'
+	'Explixit Type Conversion To char8 Saturated':
+	  'body': 'convert_char8_sat(${1:x})'
+	  'prefix': 'convert_char8_sat'
+	'Explixit Type Conversion To char8 Saturated Round To Nearest Even':
+	  'body': 'convert_char8_sat_rte(${1:x})'
+	  'prefix': 'convert_char8_sat_rte'
+	'Explixit Type Conversion To char8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_char8_sat_rtn(${1:x})'
+	  'prefix': 'convert_char8_sat_rtn'
+	'Explixit Type Conversion To char8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_char8_sat_rtp(${1:x})'
+	  'prefix': 'convert_char8_sat_rtp'
+	'Explixit Type Conversion To char8 Saturated Round Towards Zero':
+	  'body': 'convert_char8_sat_rtz(${1:x})'
+	  'prefix': 'convert_char8_sat_rtz'
+	'Explixit Type Conversion To double':
+	  'body': 'convert_double(${1:x})'
+	  'prefix': 'convert_double'
+	'Explixit Type Conversion To double Round To Nearest Even':
+	  'body': 'convert_double_rte(${1:x})'
+	  'prefix': 'convert_double_rte'
+	'Explixit Type Conversion To double Round Toward Nevagite Infinity':
+	  'body': 'convert_double_rtn(${1:x})'
+	  'prefix': 'convert_double_rtn'
+	'Explixit Type Conversion To double Round Toward Positive Infinity':
+	  'body': 'convert_double_rtp(${1:x})'
+	  'prefix': 'convert_double_rtp'
+	'Explixit Type Conversion To double Round Towards Zero':
+	  'body': 'convert_double_rtz(${1:x})'
+	  'prefix': 'convert_double_rtz'
+	'Explixit Type Conversion To double Saturated':
+	  'body': 'convert_double_sat(${1:x})'
+	  'prefix': 'convert_double_sat'
+	'Explixit Type Conversion To double Saturated Round To Nearest Even':
+	  'body': 'convert_double_sat_rte(${1:x})'
+	  'prefix': 'convert_double_sat_rte'
+	'Explixit Type Conversion To double Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_double_sat_rtn(${1:x})'
+	  'prefix': 'convert_double_sat_rtn'
+	'Explixit Type Conversion To double Saturated Round Toward Positive Infinity':
+	  'body': 'convert_double_sat_rtp(${1:x})'
+	  'prefix': 'convert_double_sat_rtp'
+	'Explixit Type Conversion To double Saturated Round Towards Zero':
+	  'body': 'convert_double_sat_rtz(${1:x})'
+	  'prefix': 'convert_double_sat_rtz'
+	'Explixit Type Conversion To double16':
+	  'body': 'convert_double16(${1:x})'
+	  'prefix': 'convert_double16'
+	'Explixit Type Conversion To double16 Round To Nearest Even':
+	  'body': 'convert_double16_rte(${1:x})'
+	  'prefix': 'convert_double16_rte'
+	'Explixit Type Conversion To double16 Round Toward Nevagite Infinity':
+	  'body': 'convert_double16_rtn(${1:x})'
+	  'prefix': 'convert_double16_rtn'
+	'Explixit Type Conversion To double16 Round Toward Positive Infinity':
+	  'body': 'convert_double16_rtp(${1:x})'
+	  'prefix': 'convert_double16_rtp'
+	'Explixit Type Conversion To double16 Round Towards Zero':
+	  'body': 'convert_double16_rtz(${1:x})'
+	  'prefix': 'convert_double16_rtz'
+	'Explixit Type Conversion To double16 Saturated':
+	  'body': 'convert_double16_sat(${1:x})'
+	  'prefix': 'convert_double16_sat'
+	'Explixit Type Conversion To double16 Saturated Round To Nearest Even':
+	  'body': 'convert_double16_sat_rte(${1:x})'
+	  'prefix': 'convert_double16_sat_rte'
+	'Explixit Type Conversion To double16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_double16_sat_rtn(${1:x})'
+	  'prefix': 'convert_double16_sat_rtn'
+	'Explixit Type Conversion To double16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_double16_sat_rtp(${1:x})'
+	  'prefix': 'convert_double16_sat_rtp'
+	'Explixit Type Conversion To double16 Saturated Round Towards Zero':
+	  'body': 'convert_double16_sat_rtz(${1:x})'
+	  'prefix': 'convert_double16_sat_rtz'
+	'Explixit Type Conversion To double2':
+	  'body': 'convert_double2(${1:x})'
+	  'prefix': 'convert_double2'
+	'Explixit Type Conversion To double2 Round To Nearest Even':
+	  'body': 'convert_double2_rte(${1:x})'
+	  'prefix': 'convert_double2_rte'
+	'Explixit Type Conversion To double2 Round Toward Nevagite Infinity':
+	  'body': 'convert_double2_rtn(${1:x})'
+	  'prefix': 'convert_double2_rtn'
+	'Explixit Type Conversion To double2 Round Toward Positive Infinity':
+	  'body': 'convert_double2_rtp(${1:x})'
+	  'prefix': 'convert_double2_rtp'
+	'Explixit Type Conversion To double2 Round Towards Zero':
+	  'body': 'convert_double2_rtz(${1:x})'
+	  'prefix': 'convert_double2_rtz'
+	'Explixit Type Conversion To double2 Saturated':
+	  'body': 'convert_double2_sat(${1:x})'
+	  'prefix': 'convert_double2_sat'
+	'Explixit Type Conversion To double2 Saturated Round To Nearest Even':
+	  'body': 'convert_double2_sat_rte(${1:x})'
+	  'prefix': 'convert_double2_sat_rte'
+	'Explixit Type Conversion To double2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_double2_sat_rtn(${1:x})'
+	  'prefix': 'convert_double2_sat_rtn'
+	'Explixit Type Conversion To double2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_double2_sat_rtp(${1:x})'
+	  'prefix': 'convert_double2_sat_rtp'
+	'Explixit Type Conversion To double2 Saturated Round Towards Zero':
+	  'body': 'convert_double2_sat_rtz(${1:x})'
+	  'prefix': 'convert_double2_sat_rtz'
+	'Explixit Type Conversion To double3':
+	  'body': 'convert_double3(${1:x})'
+	  'prefix': 'convert_double3'
+	'Explixit Type Conversion To double3 Round To Nearest Even':
+	  'body': 'convert_double3_rte(${1:x})'
+	  'prefix': 'convert_double3_rte'
+	'Explixit Type Conversion To double3 Round Toward Nevagite Infinity':
+	  'body': 'convert_double3_rtn(${1:x})'
+	  'prefix': 'convert_double3_rtn'
+	'Explixit Type Conversion To double3 Round Toward Positive Infinity':
+	  'body': 'convert_double3_rtp(${1:x})'
+	  'prefix': 'convert_double3_rtp'
+	'Explixit Type Conversion To double3 Round Towards Zero':
+	  'body': 'convert_double3_rtz(${1:x})'
+	  'prefix': 'convert_double3_rtz'
+	'Explixit Type Conversion To double3 Saturated':
+	  'body': 'convert_double3_sat(${1:x})'
+	  'prefix': 'convert_double3_sat'
+	'Explixit Type Conversion To double3 Saturated Round To Nearest Even':
+	  'body': 'convert_double3_sat_rte(${1:x})'
+	  'prefix': 'convert_double3_sat_rte'
+	'Explixit Type Conversion To double3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_double3_sat_rtn(${1:x})'
+	  'prefix': 'convert_double3_sat_rtn'
+	'Explixit Type Conversion To double3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_double3_sat_rtp(${1:x})'
+	  'prefix': 'convert_double3_sat_rtp'
+	'Explixit Type Conversion To double3 Saturated Round Towards Zero':
+	  'body': 'convert_double3_sat_rtz(${1:x})'
+	  'prefix': 'convert_double3_sat_rtz'
+	'Explixit Type Conversion To double4':
+	  'body': 'convert_double4(${1:x})'
+	  'prefix': 'convert_double4'
+	'Explixit Type Conversion To double4 Round To Nearest Even':
+	  'body': 'convert_double4_rte(${1:x})'
+	  'prefix': 'convert_double4_rte'
+	'Explixit Type Conversion To double4 Round Toward Nevagite Infinity':
+	  'body': 'convert_double4_rtn(${1:x})'
+	  'prefix': 'convert_double4_rtn'
+	'Explixit Type Conversion To double4 Round Toward Positive Infinity':
+	  'body': 'convert_double4_rtp(${1:x})'
+	  'prefix': 'convert_double4_rtp'
+	'Explixit Type Conversion To double4 Round Towards Zero':
+	  'body': 'convert_double4_rtz(${1:x})'
+	  'prefix': 'convert_double4_rtz'
+	'Explixit Type Conversion To double4 Saturated':
+	  'body': 'convert_double4_sat(${1:x})'
+	  'prefix': 'convert_double4_sat'
+	'Explixit Type Conversion To double4 Saturated Round To Nearest Even':
+	  'body': 'convert_double4_sat_rte(${1:x})'
+	  'prefix': 'convert_double4_sat_rte'
+	'Explixit Type Conversion To double4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_double4_sat_rtn(${1:x})'
+	  'prefix': 'convert_double4_sat_rtn'
+	'Explixit Type Conversion To double4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_double4_sat_rtp(${1:x})'
+	  'prefix': 'convert_double4_sat_rtp'
+	'Explixit Type Conversion To double4 Saturated Round Towards Zero':
+	  'body': 'convert_double4_sat_rtz(${1:x})'
+	  'prefix': 'convert_double4_sat_rtz'
+	'Explixit Type Conversion To double8':
+	  'body': 'convert_double8(${1:x})'
+	  'prefix': 'convert_double8'
+	'Explixit Type Conversion To double8 Round To Nearest Even':
+	  'body': 'convert_double8_rte(${1:x})'
+	  'prefix': 'convert_double8_rte'
+	'Explixit Type Conversion To double8 Round Toward Nevagite Infinity':
+	  'body': 'convert_double8_rtn(${1:x})'
+	  'prefix': 'convert_double8_rtn'
+	'Explixit Type Conversion To double8 Round Toward Positive Infinity':
+	  'body': 'convert_double8_rtp(${1:x})'
+	  'prefix': 'convert_double8_rtp'
+	'Explixit Type Conversion To double8 Round Towards Zero':
+	  'body': 'convert_double8_rtz(${1:x})'
+	  'prefix': 'convert_double8_rtz'
+	'Explixit Type Conversion To double8 Saturated':
+	  'body': 'convert_double8_sat(${1:x})'
+	  'prefix': 'convert_double8_sat'
+	'Explixit Type Conversion To double8 Saturated Round To Nearest Even':
+	  'body': 'convert_double8_sat_rte(${1:x})'
+	  'prefix': 'convert_double8_sat_rte'
+	'Explixit Type Conversion To double8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_double8_sat_rtn(${1:x})'
+	  'prefix': 'convert_double8_sat_rtn'
+	'Explixit Type Conversion To double8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_double8_sat_rtp(${1:x})'
+	  'prefix': 'convert_double8_sat_rtp'
+	'Explixit Type Conversion To double8 Saturated Round Towards Zero':
+	  'body': 'convert_double8_sat_rtz(${1:x})'
+	  'prefix': 'convert_double8_sat_rtz'
+	'Explixit Type Conversion To float':
+	  'body': 'convert_float(${1:x})'
+	  'prefix': 'convert_float'
+	'Explixit Type Conversion To float Round To Nearest Even':
+	  'body': 'convert_float_rte(${1:x})'
+	  'prefix': 'convert_float_rte'
+	'Explixit Type Conversion To float Round Toward Nevagite Infinity':
+	  'body': 'convert_float_rtn(${1:x})'
+	  'prefix': 'convert_float_rtn'
+	'Explixit Type Conversion To float Round Toward Positive Infinity':
+	  'body': 'convert_float_rtp(${1:x})'
+	  'prefix': 'convert_float_rtp'
+	'Explixit Type Conversion To float Round Towards Zero':
+	  'body': 'convert_float_rtz(${1:x})'
+	  'prefix': 'convert_float_rtz'
+	'Explixit Type Conversion To float Saturated':
+	  'body': 'convert_float_sat(${1:x})'
+	  'prefix': 'convert_float_sat'
+	'Explixit Type Conversion To float Saturated Round To Nearest Even':
+	  'body': 'convert_float_sat_rte(${1:x})'
+	  'prefix': 'convert_float_sat_rte'
+	'Explixit Type Conversion To float Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_float_sat_rtn(${1:x})'
+	  'prefix': 'convert_float_sat_rtn'
+	'Explixit Type Conversion To float Saturated Round Toward Positive Infinity':
+	  'body': 'convert_float_sat_rtp(${1:x})'
+	  'prefix': 'convert_float_sat_rtp'
+	'Explixit Type Conversion To float Saturated Round Towards Zero':
+	  'body': 'convert_float_sat_rtz(${1:x})'
+	  'prefix': 'convert_float_sat_rtz'
+	'Explixit Type Conversion To float16':
+	  'body': 'convert_float16(${1:x})'
+	  'prefix': 'convert_float16'
+	'Explixit Type Conversion To float16 Round To Nearest Even':
+	  'body': 'convert_float16_rte(${1:x})'
+	  'prefix': 'convert_float16_rte'
+	'Explixit Type Conversion To float16 Round Toward Nevagite Infinity':
+	  'body': 'convert_float16_rtn(${1:x})'
+	  'prefix': 'convert_float16_rtn'
+	'Explixit Type Conversion To float16 Round Toward Positive Infinity':
+	  'body': 'convert_float16_rtp(${1:x})'
+	  'prefix': 'convert_float16_rtp'
+	'Explixit Type Conversion To float16 Round Towards Zero':
+	  'body': 'convert_float16_rtz(${1:x})'
+	  'prefix': 'convert_float16_rtz'
+	'Explixit Type Conversion To float16 Saturated':
+	  'body': 'convert_float16_sat(${1:x})'
+	  'prefix': 'convert_float16_sat'
+	'Explixit Type Conversion To float16 Saturated Round To Nearest Even':
+	  'body': 'convert_float16_sat_rte(${1:x})'
+	  'prefix': 'convert_float16_sat_rte'
+	'Explixit Type Conversion To float16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_float16_sat_rtn(${1:x})'
+	  'prefix': 'convert_float16_sat_rtn'
+	'Explixit Type Conversion To float16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_float16_sat_rtp(${1:x})'
+	  'prefix': 'convert_float16_sat_rtp'
+	'Explixit Type Conversion To float16 Saturated Round Towards Zero':
+	  'body': 'convert_float16_sat_rtz(${1:x})'
+	  'prefix': 'convert_float16_sat_rtz'
+	'Explixit Type Conversion To float2':
+	  'body': 'convert_float2(${1:x})'
+	  'prefix': 'convert_float2'
+	'Explixit Type Conversion To float2 Round To Nearest Even':
+	  'body': 'convert_float2_rte(${1:x})'
+	  'prefix': 'convert_float2_rte'
+	'Explixit Type Conversion To float2 Round Toward Nevagite Infinity':
+	  'body': 'convert_float2_rtn(${1:x})'
+	  'prefix': 'convert_float2_rtn'
+	'Explixit Type Conversion To float2 Round Toward Positive Infinity':
+	  'body': 'convert_float2_rtp(${1:x})'
+	  'prefix': 'convert_float2_rtp'
+	'Explixit Type Conversion To float2 Round Towards Zero':
+	  'body': 'convert_float2_rtz(${1:x})'
+	  'prefix': 'convert_float2_rtz'
+	'Explixit Type Conversion To float2 Saturated':
+	  'body': 'convert_float2_sat(${1:x})'
+	  'prefix': 'convert_float2_sat'
+	'Explixit Type Conversion To float2 Saturated Round To Nearest Even':
+	  'body': 'convert_float2_sat_rte(${1:x})'
+	  'prefix': 'convert_float2_sat_rte'
+	'Explixit Type Conversion To float2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_float2_sat_rtn(${1:x})'
+	  'prefix': 'convert_float2_sat_rtn'
+	'Explixit Type Conversion To float2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_float2_sat_rtp(${1:x})'
+	  'prefix': 'convert_float2_sat_rtp'
+	'Explixit Type Conversion To float2 Saturated Round Towards Zero':
+	  'body': 'convert_float2_sat_rtz(${1:x})'
+	  'prefix': 'convert_float2_sat_rtz'
+	'Explixit Type Conversion To float3':
+	  'body': 'convert_float3(${1:x})'
+	  'prefix': 'convert_float3'
+	'Explixit Type Conversion To float3 Round To Nearest Even':
+	  'body': 'convert_float3_rte(${1:x})'
+	  'prefix': 'convert_float3_rte'
+	'Explixit Type Conversion To float3 Round Toward Nevagite Infinity':
+	  'body': 'convert_float3_rtn(${1:x})'
+	  'prefix': 'convert_float3_rtn'
+	'Explixit Type Conversion To float3 Round Toward Positive Infinity':
+	  'body': 'convert_float3_rtp(${1:x})'
+	  'prefix': 'convert_float3_rtp'
+	'Explixit Type Conversion To float3 Round Towards Zero':
+	  'body': 'convert_float3_rtz(${1:x})'
+	  'prefix': 'convert_float3_rtz'
+	'Explixit Type Conversion To float3 Saturated':
+	  'body': 'convert_float3_sat(${1:x})'
+	  'prefix': 'convert_float3_sat'
+	'Explixit Type Conversion To float3 Saturated Round To Nearest Even':
+	  'body': 'convert_float3_sat_rte(${1:x})'
+	  'prefix': 'convert_float3_sat_rte'
+	'Explixit Type Conversion To float3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_float3_sat_rtn(${1:x})'
+	  'prefix': 'convert_float3_sat_rtn'
+	'Explixit Type Conversion To float3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_float3_sat_rtp(${1:x})'
+	  'prefix': 'convert_float3_sat_rtp'
+	'Explixit Type Conversion To float3 Saturated Round Towards Zero':
+	  'body': 'convert_float3_sat_rtz(${1:x})'
+	  'prefix': 'convert_float3_sat_rtz'
+	'Explixit Type Conversion To float4':
+	  'body': 'convert_float4(${1:x})'
+	  'prefix': 'convert_float4'
+	'Explixit Type Conversion To float4 Round To Nearest Even':
+	  'body': 'convert_float4_rte(${1:x})'
+	  'prefix': 'convert_float4_rte'
+	'Explixit Type Conversion To float4 Round Toward Nevagite Infinity':
+	  'body': 'convert_float4_rtn(${1:x})'
+	  'prefix': 'convert_float4_rtn'
+	'Explixit Type Conversion To float4 Round Toward Positive Infinity':
+	  'body': 'convert_float4_rtp(${1:x})'
+	  'prefix': 'convert_float4_rtp'
+	'Explixit Type Conversion To float4 Round Towards Zero':
+	  'body': 'convert_float4_rtz(${1:x})'
+	  'prefix': 'convert_float4_rtz'
+	'Explixit Type Conversion To float4 Saturated':
+	  'body': 'convert_float4_sat(${1:x})'
+	  'prefix': 'convert_float4_sat'
+	'Explixit Type Conversion To float4 Saturated Round To Nearest Even':
+	  'body': 'convert_float4_sat_rte(${1:x})'
+	  'prefix': 'convert_float4_sat_rte'
+	'Explixit Type Conversion To float4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_float4_sat_rtn(${1:x})'
+	  'prefix': 'convert_float4_sat_rtn'
+	'Explixit Type Conversion To float4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_float4_sat_rtp(${1:x})'
+	  'prefix': 'convert_float4_sat_rtp'
+	'Explixit Type Conversion To float4 Saturated Round Towards Zero':
+	  'body': 'convert_float4_sat_rtz(${1:x})'
+	  'prefix': 'convert_float4_sat_rtz'
+	'Explixit Type Conversion To float8':
+	  'body': 'convert_float8(${1:x})'
+	  'prefix': 'convert_float8'
+	'Explixit Type Conversion To float8 Round To Nearest Even':
+	  'body': 'convert_float8_rte(${1:x})'
+	  'prefix': 'convert_float8_rte'
+	'Explixit Type Conversion To float8 Round Toward Nevagite Infinity':
+	  'body': 'convert_float8_rtn(${1:x})'
+	  'prefix': 'convert_float8_rtn'
+	'Explixit Type Conversion To float8 Round Toward Positive Infinity':
+	  'body': 'convert_float8_rtp(${1:x})'
+	  'prefix': 'convert_float8_rtp'
+	'Explixit Type Conversion To float8 Round Towards Zero':
+	  'body': 'convert_float8_rtz(${1:x})'
+	  'prefix': 'convert_float8_rtz'
+	'Explixit Type Conversion To float8 Saturated':
+	  'body': 'convert_float8_sat(${1:x})'
+	  'prefix': 'convert_float8_sat'
+	'Explixit Type Conversion To float8 Saturated Round To Nearest Even':
+	  'body': 'convert_float8_sat_rte(${1:x})'
+	  'prefix': 'convert_float8_sat_rte'
+	'Explixit Type Conversion To float8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_float8_sat_rtn(${1:x})'
+	  'prefix': 'convert_float8_sat_rtn'
+	'Explixit Type Conversion To float8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_float8_sat_rtp(${1:x})'
+	  'prefix': 'convert_float8_sat_rtp'
+	'Explixit Type Conversion To float8 Saturated Round Towards Zero':
+	  'body': 'convert_float8_sat_rtz(${1:x})'
+	  'prefix': 'convert_float8_sat_rtz'
+	'Explixit Type Conversion To int':
+	  'body': 'convert_int(${1:x})'
+	  'prefix': 'convert_int'
+	'Explixit Type Conversion To int Round To Nearest Even':
+	  'body': 'convert_int_rte(${1:x})'
+	  'prefix': 'convert_int_rte'
+	'Explixit Type Conversion To int Round Toward Nevagite Infinity':
+	  'body': 'convert_int_rtn(${1:x})'
+	  'prefix': 'convert_int_rtn'
+	'Explixit Type Conversion To int Round Toward Positive Infinity':
+	  'body': 'convert_int_rtp(${1:x})'
+	  'prefix': 'convert_int_rtp'
+	'Explixit Type Conversion To int Round Towards Zero':
+	  'body': 'convert_int_rtz(${1:x})'
+	  'prefix': 'convert_int_rtz'
+	'Explixit Type Conversion To int Saturated':
+	  'body': 'convert_int_sat(${1:x})'
+	  'prefix': 'convert_int_sat'
+	'Explixit Type Conversion To int Saturated Round To Nearest Even':
+	  'body': 'convert_int_sat_rte(${1:x})'
+	  'prefix': 'convert_int_sat_rte'
+	'Explixit Type Conversion To int Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_int_sat_rtn(${1:x})'
+	  'prefix': 'convert_int_sat_rtn'
+	'Explixit Type Conversion To int Saturated Round Toward Positive Infinity':
+	  'body': 'convert_int_sat_rtp(${1:x})'
+	  'prefix': 'convert_int_sat_rtp'
+	'Explixit Type Conversion To int Saturated Round Towards Zero':
+	  'body': 'convert_int_sat_rtz(${1:x})'
+	  'prefix': 'convert_int_sat_rtz'
+	'Explixit Type Conversion To int16':
+	  'body': 'convert_int16(${1:x})'
+	  'prefix': 'convert_int16'
+	'Explixit Type Conversion To int16 Round To Nearest Even':
+	  'body': 'convert_int16_rte(${1:x})'
+	  'prefix': 'convert_int16_rte'
+	'Explixit Type Conversion To int16 Round Toward Nevagite Infinity':
+	  'body': 'convert_int16_rtn(${1:x})'
+	  'prefix': 'convert_int16_rtn'
+	'Explixit Type Conversion To int16 Round Toward Positive Infinity':
+	  'body': 'convert_int16_rtp(${1:x})'
+	  'prefix': 'convert_int16_rtp'
+	'Explixit Type Conversion To int16 Round Towards Zero':
+	  'body': 'convert_int16_rtz(${1:x})'
+	  'prefix': 'convert_int16_rtz'
+	'Explixit Type Conversion To int16 Saturated':
+	  'body': 'convert_int16_sat(${1:x})'
+	  'prefix': 'convert_int16_sat'
+	'Explixit Type Conversion To int16 Saturated Round To Nearest Even':
+	  'body': 'convert_int16_sat_rte(${1:x})'
+	  'prefix': 'convert_int16_sat_rte'
+	'Explixit Type Conversion To int16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_int16_sat_rtn(${1:x})'
+	  'prefix': 'convert_int16_sat_rtn'
+	'Explixit Type Conversion To int16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_int16_sat_rtp(${1:x})'
+	  'prefix': 'convert_int16_sat_rtp'
+	'Explixit Type Conversion To int16 Saturated Round Towards Zero':
+	  'body': 'convert_int16_sat_rtz(${1:x})'
+	  'prefix': 'convert_int16_sat_rtz'
+	'Explixit Type Conversion To int2':
+	  'body': 'convert_int2(${1:x})'
+	  'prefix': 'convert_int2'
+	'Explixit Type Conversion To int2 Round To Nearest Even':
+	  'body': 'convert_int2_rte(${1:x})'
+	  'prefix': 'convert_int2_rte'
+	'Explixit Type Conversion To int2 Round Toward Nevagite Infinity':
+	  'body': 'convert_int2_rtn(${1:x})'
+	  'prefix': 'convert_int2_rtn'
+	'Explixit Type Conversion To int2 Round Toward Positive Infinity':
+	  'body': 'convert_int2_rtp(${1:x})'
+	  'prefix': 'convert_int2_rtp'
+	'Explixit Type Conversion To int2 Round Towards Zero':
+	  'body': 'convert_int2_rtz(${1:x})'
+	  'prefix': 'convert_int2_rtz'
+	'Explixit Type Conversion To int2 Saturated':
+	  'body': 'convert_int2_sat(${1:x})'
+	  'prefix': 'convert_int2_sat'
+	'Explixit Type Conversion To int2 Saturated Round To Nearest Even':
+	  'body': 'convert_int2_sat_rte(${1:x})'
+	  'prefix': 'convert_int2_sat_rte'
+	'Explixit Type Conversion To int2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_int2_sat_rtn(${1:x})'
+	  'prefix': 'convert_int2_sat_rtn'
+	'Explixit Type Conversion To int2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_int2_sat_rtp(${1:x})'
+	  'prefix': 'convert_int2_sat_rtp'
+	'Explixit Type Conversion To int2 Saturated Round Towards Zero':
+	  'body': 'convert_int2_sat_rtz(${1:x})'
+	  'prefix': 'convert_int2_sat_rtz'
+	'Explixit Type Conversion To int3':
+	  'body': 'convert_int3(${1:x})'
+	  'prefix': 'convert_int3'
+	'Explixit Type Conversion To int3 Round To Nearest Even':
+	  'body': 'convert_int3_rte(${1:x})'
+	  'prefix': 'convert_int3_rte'
+	'Explixit Type Conversion To int3 Round Toward Nevagite Infinity':
+	  'body': 'convert_int3_rtn(${1:x})'
+	  'prefix': 'convert_int3_rtn'
+	'Explixit Type Conversion To int3 Round Toward Positive Infinity':
+	  'body': 'convert_int3_rtp(${1:x})'
+	  'prefix': 'convert_int3_rtp'
+	'Explixit Type Conversion To int3 Round Towards Zero':
+	  'body': 'convert_int3_rtz(${1:x})'
+	  'prefix': 'convert_int3_rtz'
+	'Explixit Type Conversion To int3 Saturated':
+	  'body': 'convert_int3_sat(${1:x})'
+	  'prefix': 'convert_int3_sat'
+	'Explixit Type Conversion To int3 Saturated Round To Nearest Even':
+	  'body': 'convert_int3_sat_rte(${1:x})'
+	  'prefix': 'convert_int3_sat_rte'
+	'Explixit Type Conversion To int3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_int3_sat_rtn(${1:x})'
+	  'prefix': 'convert_int3_sat_rtn'
+	'Explixit Type Conversion To int3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_int3_sat_rtp(${1:x})'
+	  'prefix': 'convert_int3_sat_rtp'
+	'Explixit Type Conversion To int3 Saturated Round Towards Zero':
+	  'body': 'convert_int3_sat_rtz(${1:x})'
+	  'prefix': 'convert_int3_sat_rtz'
+	'Explixit Type Conversion To int4':
+	  'body': 'convert_int4(${1:x})'
+	  'prefix': 'convert_int4'
+	'Explixit Type Conversion To int4 Round To Nearest Even':
+	  'body': 'convert_int4_rte(${1:x})'
+	  'prefix': 'convert_int4_rte'
+	'Explixit Type Conversion To int4 Round Toward Nevagite Infinity':
+	  'body': 'convert_int4_rtn(${1:x})'
+	  'prefix': 'convert_int4_rtn'
+	'Explixit Type Conversion To int4 Round Toward Positive Infinity':
+	  'body': 'convert_int4_rtp(${1:x})'
+	  'prefix': 'convert_int4_rtp'
+	'Explixit Type Conversion To int4 Round Towards Zero':
+	  'body': 'convert_int4_rtz(${1:x})'
+	  'prefix': 'convert_int4_rtz'
+	'Explixit Type Conversion To int4 Saturated':
+	  'body': 'convert_int4_sat(${1:x})'
+	  'prefix': 'convert_int4_sat'
+	'Explixit Type Conversion To int4 Saturated Round To Nearest Even':
+	  'body': 'convert_int4_sat_rte(${1:x})'
+	  'prefix': 'convert_int4_sat_rte'
+	'Explixit Type Conversion To int4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_int4_sat_rtn(${1:x})'
+	  'prefix': 'convert_int4_sat_rtn'
+	'Explixit Type Conversion To int4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_int4_sat_rtp(${1:x})'
+	  'prefix': 'convert_int4_sat_rtp'
+	'Explixit Type Conversion To int4 Saturated Round Towards Zero':
+	  'body': 'convert_int4_sat_rtz(${1:x})'
+	  'prefix': 'convert_int4_sat_rtz'
+	'Explixit Type Conversion To int8':
+	  'body': 'convert_int8(${1:x})'
+	  'prefix': 'convert_int8'
+	'Explixit Type Conversion To int8 Round To Nearest Even':
+	  'body': 'convert_int8_rte(${1:x})'
+	  'prefix': 'convert_int8_rte'
+	'Explixit Type Conversion To int8 Round Toward Nevagite Infinity':
+	  'body': 'convert_int8_rtn(${1:x})'
+	  'prefix': 'convert_int8_rtn'
+	'Explixit Type Conversion To int8 Round Toward Positive Infinity':
+	  'body': 'convert_int8_rtp(${1:x})'
+	  'prefix': 'convert_int8_rtp'
+	'Explixit Type Conversion To int8 Round Towards Zero':
+	  'body': 'convert_int8_rtz(${1:x})'
+	  'prefix': 'convert_int8_rtz'
+	'Explixit Type Conversion To int8 Saturated':
+	  'body': 'convert_int8_sat(${1:x})'
+	  'prefix': 'convert_int8_sat'
+	'Explixit Type Conversion To int8 Saturated Round To Nearest Even':
+	  'body': 'convert_int8_sat_rte(${1:x})'
+	  'prefix': 'convert_int8_sat_rte'
+	'Explixit Type Conversion To int8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_int8_sat_rtn(${1:x})'
+	  'prefix': 'convert_int8_sat_rtn'
+	'Explixit Type Conversion To int8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_int8_sat_rtp(${1:x})'
+	  'prefix': 'convert_int8_sat_rtp'
+	'Explixit Type Conversion To int8 Saturated Round Towards Zero':
+	  'body': 'convert_int8_sat_rtz(${1:x})'
+	  'prefix': 'convert_int8_sat_rtz'
+	'Explixit Type Conversion To long':
+	  'body': 'convert_long(${1:x})'
+	  'prefix': 'convert_long'
+	'Explixit Type Conversion To long Round To Nearest Even':
+	  'body': 'convert_long_rte(${1:x})'
+	  'prefix': 'convert_long_rte'
+	'Explixit Type Conversion To long Round Toward Nevagite Infinity':
+	  'body': 'convert_long_rtn(${1:x})'
+	  'prefix': 'convert_long_rtn'
+	'Explixit Type Conversion To long Round Toward Positive Infinity':
+	  'body': 'convert_long_rtp(${1:x})'
+	  'prefix': 'convert_long_rtp'
+	'Explixit Type Conversion To long Round Towards Zero':
+	  'body': 'convert_long_rtz(${1:x})'
+	  'prefix': 'convert_long_rtz'
+	'Explixit Type Conversion To long Saturated':
+	  'body': 'convert_long_sat(${1:x})'
+	  'prefix': 'convert_long_sat'
+	'Explixit Type Conversion To long Saturated Round To Nearest Even':
+	  'body': 'convert_long_sat_rte(${1:x})'
+	  'prefix': 'convert_long_sat_rte'
+	'Explixit Type Conversion To long Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_long_sat_rtn(${1:x})'
+	  'prefix': 'convert_long_sat_rtn'
+	'Explixit Type Conversion To long Saturated Round Toward Positive Infinity':
+	  'body': 'convert_long_sat_rtp(${1:x})'
+	  'prefix': 'convert_long_sat_rtp'
+	'Explixit Type Conversion To long Saturated Round Towards Zero':
+	  'body': 'convert_long_sat_rtz(${1:x})'
+	  'prefix': 'convert_long_sat_rtz'
+	'Explixit Type Conversion To long16':
+	  'body': 'convert_long16(${1:x})'
+	  'prefix': 'convert_long16'
+	'Explixit Type Conversion To long16 Round To Nearest Even':
+	  'body': 'convert_long16_rte(${1:x})'
+	  'prefix': 'convert_long16_rte'
+	'Explixit Type Conversion To long16 Round Toward Nevagite Infinity':
+	  'body': 'convert_long16_rtn(${1:x})'
+	  'prefix': 'convert_long16_rtn'
+	'Explixit Type Conversion To long16 Round Toward Positive Infinity':
+	  'body': 'convert_long16_rtp(${1:x})'
+	  'prefix': 'convert_long16_rtp'
+	'Explixit Type Conversion To long16 Round Towards Zero':
+	  'body': 'convert_long16_rtz(${1:x})'
+	  'prefix': 'convert_long16_rtz'
+	'Explixit Type Conversion To long16 Saturated':
+	  'body': 'convert_long16_sat(${1:x})'
+	  'prefix': 'convert_long16_sat'
+	'Explixit Type Conversion To long16 Saturated Round To Nearest Even':
+	  'body': 'convert_long16_sat_rte(${1:x})'
+	  'prefix': 'convert_long16_sat_rte'
+	'Explixit Type Conversion To long16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_long16_sat_rtn(${1:x})'
+	  'prefix': 'convert_long16_sat_rtn'
+	'Explixit Type Conversion To long16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_long16_sat_rtp(${1:x})'
+	  'prefix': 'convert_long16_sat_rtp'
+	'Explixit Type Conversion To long16 Saturated Round Towards Zero':
+	  'body': 'convert_long16_sat_rtz(${1:x})'
+	  'prefix': 'convert_long16_sat_rtz'
+	'Explixit Type Conversion To long2':
+	  'body': 'convert_long2(${1:x})'
+	  'prefix': 'convert_long2'
+	'Explixit Type Conversion To long2 Round To Nearest Even':
+	  'body': 'convert_long2_rte(${1:x})'
+	  'prefix': 'convert_long2_rte'
+	'Explixit Type Conversion To long2 Round Toward Nevagite Infinity':
+	  'body': 'convert_long2_rtn(${1:x})'
+	  'prefix': 'convert_long2_rtn'
+	'Explixit Type Conversion To long2 Round Toward Positive Infinity':
+	  'body': 'convert_long2_rtp(${1:x})'
+	  'prefix': 'convert_long2_rtp'
+	'Explixit Type Conversion To long2 Round Towards Zero':
+	  'body': 'convert_long2_rtz(${1:x})'
+	  'prefix': 'convert_long2_rtz'
+	'Explixit Type Conversion To long2 Saturated':
+	  'body': 'convert_long2_sat(${1:x})'
+	  'prefix': 'convert_long2_sat'
+	'Explixit Type Conversion To long2 Saturated Round To Nearest Even':
+	  'body': 'convert_long2_sat_rte(${1:x})'
+	  'prefix': 'convert_long2_sat_rte'
+	'Explixit Type Conversion To long2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_long2_sat_rtn(${1:x})'
+	  'prefix': 'convert_long2_sat_rtn'
+	'Explixit Type Conversion To long2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_long2_sat_rtp(${1:x})'
+	  'prefix': 'convert_long2_sat_rtp'
+	'Explixit Type Conversion To long2 Saturated Round Towards Zero':
+	  'body': 'convert_long2_sat_rtz(${1:x})'
+	  'prefix': 'convert_long2_sat_rtz'
+	'Explixit Type Conversion To long3':
+	  'body': 'convert_long3(${1:x})'
+	  'prefix': 'convert_long3'
+	'Explixit Type Conversion To long3 Round To Nearest Even':
+	  'body': 'convert_long3_rte(${1:x})'
+	  'prefix': 'convert_long3_rte'
+	'Explixit Type Conversion To long3 Round Toward Nevagite Infinity':
+	  'body': 'convert_long3_rtn(${1:x})'
+	  'prefix': 'convert_long3_rtn'
+	'Explixit Type Conversion To long3 Round Toward Positive Infinity':
+	  'body': 'convert_long3_rtp(${1:x})'
+	  'prefix': 'convert_long3_rtp'
+	'Explixit Type Conversion To long3 Round Towards Zero':
+	  'body': 'convert_long3_rtz(${1:x})'
+	  'prefix': 'convert_long3_rtz'
+	'Explixit Type Conversion To long3 Saturated':
+	  'body': 'convert_long3_sat(${1:x})'
+	  'prefix': 'convert_long3_sat'
+	'Explixit Type Conversion To long3 Saturated Round To Nearest Even':
+	  'body': 'convert_long3_sat_rte(${1:x})'
+	  'prefix': 'convert_long3_sat_rte'
+	'Explixit Type Conversion To long3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_long3_sat_rtn(${1:x})'
+	  'prefix': 'convert_long3_sat_rtn'
+	'Explixit Type Conversion To long3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_long3_sat_rtp(${1:x})'
+	  'prefix': 'convert_long3_sat_rtp'
+	'Explixit Type Conversion To long3 Saturated Round Towards Zero':
+	  'body': 'convert_long3_sat_rtz(${1:x})'
+	  'prefix': 'convert_long3_sat_rtz'
+	'Explixit Type Conversion To long4':
+	  'body': 'convert_long4(${1:x})'
+	  'prefix': 'convert_long4'
+	'Explixit Type Conversion To long4 Round To Nearest Even':
+	  'body': 'convert_long4_rte(${1:x})'
+	  'prefix': 'convert_long4_rte'
+	'Explixit Type Conversion To long4 Round Toward Nevagite Infinity':
+	  'body': 'convert_long4_rtn(${1:x})'
+	  'prefix': 'convert_long4_rtn'
+	'Explixit Type Conversion To long4 Round Toward Positive Infinity':
+	  'body': 'convert_long4_rtp(${1:x})'
+	  'prefix': 'convert_long4_rtp'
+	'Explixit Type Conversion To long4 Round Towards Zero':
+	  'body': 'convert_long4_rtz(${1:x})'
+	  'prefix': 'convert_long4_rtz'
+	'Explixit Type Conversion To long4 Saturated':
+	  'body': 'convert_long4_sat(${1:x})'
+	  'prefix': 'convert_long4_sat'
+	'Explixit Type Conversion To long4 Saturated Round To Nearest Even':
+	  'body': 'convert_long4_sat_rte(${1:x})'
+	  'prefix': 'convert_long4_sat_rte'
+	'Explixit Type Conversion To long4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_long4_sat_rtn(${1:x})'
+	  'prefix': 'convert_long4_sat_rtn'
+	'Explixit Type Conversion To long4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_long4_sat_rtp(${1:x})'
+	  'prefix': 'convert_long4_sat_rtp'
+	'Explixit Type Conversion To long4 Saturated Round Towards Zero':
+	  'body': 'convert_long4_sat_rtz(${1:x})'
+	  'prefix': 'convert_long4_sat_rtz'
+	'Explixit Type Conversion To long8':
+	  'body': 'convert_long8(${1:x})'
+	  'prefix': 'convert_long8'
+	'Explixit Type Conversion To long8 Round To Nearest Even':
+	  'body': 'convert_long8_rte(${1:x})'
+	  'prefix': 'convert_long8_rte'
+	'Explixit Type Conversion To long8 Round Toward Nevagite Infinity':
+	  'body': 'convert_long8_rtn(${1:x})'
+	  'prefix': 'convert_long8_rtn'
+	'Explixit Type Conversion To long8 Round Toward Positive Infinity':
+	  'body': 'convert_long8_rtp(${1:x})'
+	  'prefix': 'convert_long8_rtp'
+	'Explixit Type Conversion To long8 Round Towards Zero':
+	  'body': 'convert_long8_rtz(${1:x})'
+	  'prefix': 'convert_long8_rtz'
+	'Explixit Type Conversion To long8 Saturated':
+	  'body': 'convert_long8_sat(${1:x})'
+	  'prefix': 'convert_long8_sat'
+	'Explixit Type Conversion To long8 Saturated Round To Nearest Even':
+	  'body': 'convert_long8_sat_rte(${1:x})'
+	  'prefix': 'convert_long8_sat_rte'
+	'Explixit Type Conversion To long8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_long8_sat_rtn(${1:x})'
+	  'prefix': 'convert_long8_sat_rtn'
+	'Explixit Type Conversion To long8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_long8_sat_rtp(${1:x})'
+	  'prefix': 'convert_long8_sat_rtp'
+	'Explixit Type Conversion To long8 Saturated Round Towards Zero':
+	  'body': 'convert_long8_sat_rtz(${1:x})'
+	  'prefix': 'convert_long8_sat_rtz'
+	'Explixit Type Conversion To short':
+	  'body': 'convert_short(${1:x})'
+	  'prefix': 'convert_short'
+	'Explixit Type Conversion To short Round To Nearest Even':
+	  'body': 'convert_short_rte(${1:x})'
+	  'prefix': 'convert_short_rte'
+	'Explixit Type Conversion To short Round Toward Nevagite Infinity':
+	  'body': 'convert_short_rtn(${1:x})'
+	  'prefix': 'convert_short_rtn'
+	'Explixit Type Conversion To short Round Toward Positive Infinity':
+	  'body': 'convert_short_rtp(${1:x})'
+	  'prefix': 'convert_short_rtp'
+	'Explixit Type Conversion To short Round Towards Zero':
+	  'body': 'convert_short_rtz(${1:x})'
+	  'prefix': 'convert_short_rtz'
+	'Explixit Type Conversion To short Saturated':
+	  'body': 'convert_short_sat(${1:x})'
+	  'prefix': 'convert_short_sat'
+	'Explixit Type Conversion To short Saturated Round To Nearest Even':
+	  'body': 'convert_short_sat_rte(${1:x})'
+	  'prefix': 'convert_short_sat_rte'
+	'Explixit Type Conversion To short Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_short_sat_rtn(${1:x})'
+	  'prefix': 'convert_short_sat_rtn'
+	'Explixit Type Conversion To short Saturated Round Toward Positive Infinity':
+	  'body': 'convert_short_sat_rtp(${1:x})'
+	  'prefix': 'convert_short_sat_rtp'
+	'Explixit Type Conversion To short Saturated Round Towards Zero':
+	  'body': 'convert_short_sat_rtz(${1:x})'
+	  'prefix': 'convert_short_sat_rtz'
+	'Explixit Type Conversion To short16':
+	  'body': 'convert_short16(${1:x})'
+	  'prefix': 'convert_short16'
+	'Explixit Type Conversion To short16 Round To Nearest Even':
+	  'body': 'convert_short16_rte(${1:x})'
+	  'prefix': 'convert_short16_rte'
+	'Explixit Type Conversion To short16 Round Toward Nevagite Infinity':
+	  'body': 'convert_short16_rtn(${1:x})'
+	  'prefix': 'convert_short16_rtn'
+	'Explixit Type Conversion To short16 Round Toward Positive Infinity':
+	  'body': 'convert_short16_rtp(${1:x})'
+	  'prefix': 'convert_short16_rtp'
+	'Explixit Type Conversion To short16 Round Towards Zero':
+	  'body': 'convert_short16_rtz(${1:x})'
+	  'prefix': 'convert_short16_rtz'
+	'Explixit Type Conversion To short16 Saturated':
+	  'body': 'convert_short16_sat(${1:x})'
+	  'prefix': 'convert_short16_sat'
+	'Explixit Type Conversion To short16 Saturated Round To Nearest Even':
+	  'body': 'convert_short16_sat_rte(${1:x})'
+	  'prefix': 'convert_short16_sat_rte'
+	'Explixit Type Conversion To short16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_short16_sat_rtn(${1:x})'
+	  'prefix': 'convert_short16_sat_rtn'
+	'Explixit Type Conversion To short16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_short16_sat_rtp(${1:x})'
+	  'prefix': 'convert_short16_sat_rtp'
+	'Explixit Type Conversion To short16 Saturated Round Towards Zero':
+	  'body': 'convert_short16_sat_rtz(${1:x})'
+	  'prefix': 'convert_short16_sat_rtz'
+	'Explixit Type Conversion To short2':
+	  'body': 'convert_short2(${1:x})'
+	  'prefix': 'convert_short2'
+	'Explixit Type Conversion To short2 Round To Nearest Even':
+	  'body': 'convert_short2_rte(${1:x})'
+	  'prefix': 'convert_short2_rte'
+	'Explixit Type Conversion To short2 Round Toward Nevagite Infinity':
+	  'body': 'convert_short2_rtn(${1:x})'
+	  'prefix': 'convert_short2_rtn'
+	'Explixit Type Conversion To short2 Round Toward Positive Infinity':
+	  'body': 'convert_short2_rtp(${1:x})'
+	  'prefix': 'convert_short2_rtp'
+	'Explixit Type Conversion To short2 Round Towards Zero':
+	  'body': 'convert_short2_rtz(${1:x})'
+	  'prefix': 'convert_short2_rtz'
+	'Explixit Type Conversion To short2 Saturated':
+	  'body': 'convert_short2_sat(${1:x})'
+	  'prefix': 'convert_short2_sat'
+	'Explixit Type Conversion To short2 Saturated Round To Nearest Even':
+	  'body': 'convert_short2_sat_rte(${1:x})'
+	  'prefix': 'convert_short2_sat_rte'
+	'Explixit Type Conversion To short2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_short2_sat_rtn(${1:x})'
+	  'prefix': 'convert_short2_sat_rtn'
+	'Explixit Type Conversion To short2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_short2_sat_rtp(${1:x})'
+	  'prefix': 'convert_short2_sat_rtp'
+	'Explixit Type Conversion To short2 Saturated Round Towards Zero':
+	  'body': 'convert_short2_sat_rtz(${1:x})'
+	  'prefix': 'convert_short2_sat_rtz'
+	'Explixit Type Conversion To short3':
+	  'body': 'convert_short3(${1:x})'
+	  'prefix': 'convert_short3'
+	'Explixit Type Conversion To short3 Round To Nearest Even':
+	  'body': 'convert_short3_rte(${1:x})'
+	  'prefix': 'convert_short3_rte'
+	'Explixit Type Conversion To short3 Round Toward Nevagite Infinity':
+	  'body': 'convert_short3_rtn(${1:x})'
+	  'prefix': 'convert_short3_rtn'
+	'Explixit Type Conversion To short3 Round Toward Positive Infinity':
+	  'body': 'convert_short3_rtp(${1:x})'
+	  'prefix': 'convert_short3_rtp'
+	'Explixit Type Conversion To short3 Round Towards Zero':
+	  'body': 'convert_short3_rtz(${1:x})'
+	  'prefix': 'convert_short3_rtz'
+	'Explixit Type Conversion To short3 Saturated':
+	  'body': 'convert_short3_sat(${1:x})'
+	  'prefix': 'convert_short3_sat'
+	'Explixit Type Conversion To short3 Saturated Round To Nearest Even':
+	  'body': 'convert_short3_sat_rte(${1:x})'
+	  'prefix': 'convert_short3_sat_rte'
+	'Explixit Type Conversion To short3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_short3_sat_rtn(${1:x})'
+	  'prefix': 'convert_short3_sat_rtn'
+	'Explixit Type Conversion To short3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_short3_sat_rtp(${1:x})'
+	  'prefix': 'convert_short3_sat_rtp'
+	'Explixit Type Conversion To short3 Saturated Round Towards Zero':
+	  'body': 'convert_short3_sat_rtz(${1:x})'
+	  'prefix': 'convert_short3_sat_rtz'
+	'Explixit Type Conversion To short4':
+	  'body': 'convert_short4(${1:x})'
+	  'prefix': 'convert_short4'
+	'Explixit Type Conversion To short4 Round To Nearest Even':
+	  'body': 'convert_short4_rte(${1:x})'
+	  'prefix': 'convert_short4_rte'
+	'Explixit Type Conversion To short4 Round Toward Nevagite Infinity':
+	  'body': 'convert_short4_rtn(${1:x})'
+	  'prefix': 'convert_short4_rtn'
+	'Explixit Type Conversion To short4 Round Toward Positive Infinity':
+	  'body': 'convert_short4_rtp(${1:x})'
+	  'prefix': 'convert_short4_rtp'
+	'Explixit Type Conversion To short4 Round Towards Zero':
+	  'body': 'convert_short4_rtz(${1:x})'
+	  'prefix': 'convert_short4_rtz'
+	'Explixit Type Conversion To short4 Saturated':
+	  'body': 'convert_short4_sat(${1:x})'
+	  'prefix': 'convert_short4_sat'
+	'Explixit Type Conversion To short4 Saturated Round To Nearest Even':
+	  'body': 'convert_short4_sat_rte(${1:x})'
+	  'prefix': 'convert_short4_sat_rte'
+	'Explixit Type Conversion To short4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_short4_sat_rtn(${1:x})'
+	  'prefix': 'convert_short4_sat_rtn'
+	'Explixit Type Conversion To short4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_short4_sat_rtp(${1:x})'
+	  'prefix': 'convert_short4_sat_rtp'
+	'Explixit Type Conversion To short4 Saturated Round Towards Zero':
+	  'body': 'convert_short4_sat_rtz(${1:x})'
+	  'prefix': 'convert_short4_sat_rtz'
+	'Explixit Type Conversion To short8':
+	  'body': 'convert_short8(${1:x})'
+	  'prefix': 'convert_short8'
+	'Explixit Type Conversion To short8 Round To Nearest Even':
+	  'body': 'convert_short8_rte(${1:x})'
+	  'prefix': 'convert_short8_rte'
+	'Explixit Type Conversion To short8 Round Toward Nevagite Infinity':
+	  'body': 'convert_short8_rtn(${1:x})'
+	  'prefix': 'convert_short8_rtn'
+	'Explixit Type Conversion To short8 Round Toward Positive Infinity':
+	  'body': 'convert_short8_rtp(${1:x})'
+	  'prefix': 'convert_short8_rtp'
+	'Explixit Type Conversion To short8 Round Towards Zero':
+	  'body': 'convert_short8_rtz(${1:x})'
+	  'prefix': 'convert_short8_rtz'
+	'Explixit Type Conversion To short8 Saturated':
+	  'body': 'convert_short8_sat(${1:x})'
+	  'prefix': 'convert_short8_sat'
+	'Explixit Type Conversion To short8 Saturated Round To Nearest Even':
+	  'body': 'convert_short8_sat_rte(${1:x})'
+	  'prefix': 'convert_short8_sat_rte'
+	'Explixit Type Conversion To short8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_short8_sat_rtn(${1:x})'
+	  'prefix': 'convert_short8_sat_rtn'
+	'Explixit Type Conversion To short8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_short8_sat_rtp(${1:x})'
+	  'prefix': 'convert_short8_sat_rtp'
+	'Explixit Type Conversion To short8 Saturated Round Towards Zero':
+	  'body': 'convert_short8_sat_rtz(${1:x})'
+	  'prefix': 'convert_short8_sat_rtz'
+	'Explixit Type Conversion To uchar':
+	  'body': 'convert_uchar(${1:x})'
+	  'prefix': 'convert_uchar'
+	'Explixit Type Conversion To uchar Round To Nearest Even':
+	  'body': 'convert_uchar_rte(${1:x})'
+	  'prefix': 'convert_uchar_rte'
+	'Explixit Type Conversion To uchar Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar_rtn(${1:x})'
+	  'prefix': 'convert_uchar_rtn'
+	'Explixit Type Conversion To uchar Round Toward Positive Infinity':
+	  'body': 'convert_uchar_rtp(${1:x})'
+	  'prefix': 'convert_uchar_rtp'
+	'Explixit Type Conversion To uchar Round Towards Zero':
+	  'body': 'convert_uchar_rtz(${1:x})'
+	  'prefix': 'convert_uchar_rtz'
+	'Explixit Type Conversion To uchar Saturated':
+	  'body': 'convert_uchar_sat(${1:x})'
+	  'prefix': 'convert_uchar_sat'
+	'Explixit Type Conversion To uchar Saturated Round To Nearest Even':
+	  'body': 'convert_uchar_sat_rte(${1:x})'
+	  'prefix': 'convert_uchar_sat_rte'
+	'Explixit Type Conversion To uchar Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar_sat_rtn(${1:x})'
+	  'prefix': 'convert_uchar_sat_rtn'
+	'Explixit Type Conversion To uchar Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uchar_sat_rtp(${1:x})'
+	  'prefix': 'convert_uchar_sat_rtp'
+	'Explixit Type Conversion To uchar Saturated Round Towards Zero':
+	  'body': 'convert_uchar_sat_rtz(${1:x})'
+	  'prefix': 'convert_uchar_sat_rtz'
+	'Explixit Type Conversion To uchar16':
+	  'body': 'convert_uchar16(${1:x})'
+	  'prefix': 'convert_uchar16'
+	'Explixit Type Conversion To uchar16 Round To Nearest Even':
+	  'body': 'convert_uchar16_rte(${1:x})'
+	  'prefix': 'convert_uchar16_rte'
+	'Explixit Type Conversion To uchar16 Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar16_rtn(${1:x})'
+	  'prefix': 'convert_uchar16_rtn'
+	'Explixit Type Conversion To uchar16 Round Toward Positive Infinity':
+	  'body': 'convert_uchar16_rtp(${1:x})'
+	  'prefix': 'convert_uchar16_rtp'
+	'Explixit Type Conversion To uchar16 Round Towards Zero':
+	  'body': 'convert_uchar16_rtz(${1:x})'
+	  'prefix': 'convert_uchar16_rtz'
+	'Explixit Type Conversion To uchar16 Saturated':
+	  'body': 'convert_uchar16_sat(${1:x})'
+	  'prefix': 'convert_uchar16_sat'
+	'Explixit Type Conversion To uchar16 Saturated Round To Nearest Even':
+	  'body': 'convert_uchar16_sat_rte(${1:x})'
+	  'prefix': 'convert_uchar16_sat_rte'
+	'Explixit Type Conversion To uchar16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar16_sat_rtn(${1:x})'
+	  'prefix': 'convert_uchar16_sat_rtn'
+	'Explixit Type Conversion To uchar16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uchar16_sat_rtp(${1:x})'
+	  'prefix': 'convert_uchar16_sat_rtp'
+	'Explixit Type Conversion To uchar16 Saturated Round Towards Zero':
+	  'body': 'convert_uchar16_sat_rtz(${1:x})'
+	  'prefix': 'convert_uchar16_sat_rtz'
+	'Explixit Type Conversion To uchar2':
+	  'body': 'convert_uchar2(${1:x})'
+	  'prefix': 'convert_uchar2'
+	'Explixit Type Conversion To uchar2 Round To Nearest Even':
+	  'body': 'convert_uchar2_rte(${1:x})'
+	  'prefix': 'convert_uchar2_rte'
+	'Explixit Type Conversion To uchar2 Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar2_rtn(${1:x})'
+	  'prefix': 'convert_uchar2_rtn'
+	'Explixit Type Conversion To uchar2 Round Toward Positive Infinity':
+	  'body': 'convert_uchar2_rtp(${1:x})'
+	  'prefix': 'convert_uchar2_rtp'
+	'Explixit Type Conversion To uchar2 Round Towards Zero':
+	  'body': 'convert_uchar2_rtz(${1:x})'
+	  'prefix': 'convert_uchar2_rtz'
+	'Explixit Type Conversion To uchar2 Saturated':
+	  'body': 'convert_uchar2_sat(${1:x})'
+	  'prefix': 'convert_uchar2_sat'
+	'Explixit Type Conversion To uchar2 Saturated Round To Nearest Even':
+	  'body': 'convert_uchar2_sat_rte(${1:x})'
+	  'prefix': 'convert_uchar2_sat_rte'
+	'Explixit Type Conversion To uchar2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar2_sat_rtn(${1:x})'
+	  'prefix': 'convert_uchar2_sat_rtn'
+	'Explixit Type Conversion To uchar2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uchar2_sat_rtp(${1:x})'
+	  'prefix': 'convert_uchar2_sat_rtp'
+	'Explixit Type Conversion To uchar2 Saturated Round Towards Zero':
+	  'body': 'convert_uchar2_sat_rtz(${1:x})'
+	  'prefix': 'convert_uchar2_sat_rtz'
+	'Explixit Type Conversion To uchar3':
+	  'body': 'convert_uchar3(${1:x})'
+	  'prefix': 'convert_uchar3'
+	'Explixit Type Conversion To uchar3 Round To Nearest Even':
+	  'body': 'convert_uchar3_rte(${1:x})'
+	  'prefix': 'convert_uchar3_rte'
+	'Explixit Type Conversion To uchar3 Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar3_rtn(${1:x})'
+	  'prefix': 'convert_uchar3_rtn'
+	'Explixit Type Conversion To uchar3 Round Toward Positive Infinity':
+	  'body': 'convert_uchar3_rtp(${1:x})'
+	  'prefix': 'convert_uchar3_rtp'
+	'Explixit Type Conversion To uchar3 Round Towards Zero':
+	  'body': 'convert_uchar3_rtz(${1:x})'
+	  'prefix': 'convert_uchar3_rtz'
+	'Explixit Type Conversion To uchar3 Saturated':
+	  'body': 'convert_uchar3_sat(${1:x})'
+	  'prefix': 'convert_uchar3_sat'
+	'Explixit Type Conversion To uchar3 Saturated Round To Nearest Even':
+	  'body': 'convert_uchar3_sat_rte(${1:x})'
+	  'prefix': 'convert_uchar3_sat_rte'
+	'Explixit Type Conversion To uchar3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar3_sat_rtn(${1:x})'
+	  'prefix': 'convert_uchar3_sat_rtn'
+	'Explixit Type Conversion To uchar3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uchar3_sat_rtp(${1:x})'
+	  'prefix': 'convert_uchar3_sat_rtp'
+	'Explixit Type Conversion To uchar3 Saturated Round Towards Zero':
+	  'body': 'convert_uchar3_sat_rtz(${1:x})'
+	  'prefix': 'convert_uchar3_sat_rtz'
+	'Explixit Type Conversion To uchar4':
+	  'body': 'convert_uchar4(${1:x})'
+	  'prefix': 'convert_uchar4'
+	'Explixit Type Conversion To uchar4 Round To Nearest Even':
+	  'body': 'convert_uchar4_rte(${1:x})'
+	  'prefix': 'convert_uchar4_rte'
+	'Explixit Type Conversion To uchar4 Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar4_rtn(${1:x})'
+	  'prefix': 'convert_uchar4_rtn'
+	'Explixit Type Conversion To uchar4 Round Toward Positive Infinity':
+	  'body': 'convert_uchar4_rtp(${1:x})'
+	  'prefix': 'convert_uchar4_rtp'
+	'Explixit Type Conversion To uchar4 Round Towards Zero':
+	  'body': 'convert_uchar4_rtz(${1:x})'
+	  'prefix': 'convert_uchar4_rtz'
+	'Explixit Type Conversion To uchar4 Saturated':
+	  'body': 'convert_uchar4_sat(${1:x})'
+	  'prefix': 'convert_uchar4_sat'
+	'Explixit Type Conversion To uchar4 Saturated Round To Nearest Even':
+	  'body': 'convert_uchar4_sat_rte(${1:x})'
+	  'prefix': 'convert_uchar4_sat_rte'
+	'Explixit Type Conversion To uchar4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar4_sat_rtn(${1:x})'
+	  'prefix': 'convert_uchar4_sat_rtn'
+	'Explixit Type Conversion To uchar4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uchar4_sat_rtp(${1:x})'
+	  'prefix': 'convert_uchar4_sat_rtp'
+	'Explixit Type Conversion To uchar4 Saturated Round Towards Zero':
+	  'body': 'convert_uchar4_sat_rtz(${1:x})'
+	  'prefix': 'convert_uchar4_sat_rtz'
+	'Explixit Type Conversion To uchar8':
+	  'body': 'convert_uchar8(${1:x})'
+	  'prefix': 'convert_uchar8'
+	'Explixit Type Conversion To uchar8 Round To Nearest Even':
+	  'body': 'convert_uchar8_rte(${1:x})'
+	  'prefix': 'convert_uchar8_rte'
+	'Explixit Type Conversion To uchar8 Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar8_rtn(${1:x})'
+	  'prefix': 'convert_uchar8_rtn'
+	'Explixit Type Conversion To uchar8 Round Toward Positive Infinity':
+	  'body': 'convert_uchar8_rtp(${1:x})'
+	  'prefix': 'convert_uchar8_rtp'
+	'Explixit Type Conversion To uchar8 Round Towards Zero':
+	  'body': 'convert_uchar8_rtz(${1:x})'
+	  'prefix': 'convert_uchar8_rtz'
+	'Explixit Type Conversion To uchar8 Saturated':
+	  'body': 'convert_uchar8_sat(${1:x})'
+	  'prefix': 'convert_uchar8_sat'
+	'Explixit Type Conversion To uchar8 Saturated Round To Nearest Even':
+	  'body': 'convert_uchar8_sat_rte(${1:x})'
+	  'prefix': 'convert_uchar8_sat_rte'
+	'Explixit Type Conversion To uchar8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uchar8_sat_rtn(${1:x})'
+	  'prefix': 'convert_uchar8_sat_rtn'
+	'Explixit Type Conversion To uchar8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uchar8_sat_rtp(${1:x})'
+	  'prefix': 'convert_uchar8_sat_rtp'
+	'Explixit Type Conversion To uchar8 Saturated Round Towards Zero':
+	  'body': 'convert_uchar8_sat_rtz(${1:x})'
+	  'prefix': 'convert_uchar8_sat_rtz'
+	'Explixit Type Conversion To uint':
+	  'body': 'convert_uint(${1:x})'
+	  'prefix': 'convert_uint'
+	'Explixit Type Conversion To uint Round To Nearest Even':
+	  'body': 'convert_uint_rte(${1:x})'
+	  'prefix': 'convert_uint_rte'
+	'Explixit Type Conversion To uint Round Toward Nevagite Infinity':
+	  'body': 'convert_uint_rtn(${1:x})'
+	  'prefix': 'convert_uint_rtn'
+	'Explixit Type Conversion To uint Round Toward Positive Infinity':
+	  'body': 'convert_uint_rtp(${1:x})'
+	  'prefix': 'convert_uint_rtp'
+	'Explixit Type Conversion To uint Round Towards Zero':
+	  'body': 'convert_uint_rtz(${1:x})'
+	  'prefix': 'convert_uint_rtz'
+	'Explixit Type Conversion To uint Saturated':
+	  'body': 'convert_uint_sat(${1:x})'
+	  'prefix': 'convert_uint_sat'
+	'Explixit Type Conversion To uint Saturated Round To Nearest Even':
+	  'body': 'convert_uint_sat_rte(${1:x})'
+	  'prefix': 'convert_uint_sat_rte'
+	'Explixit Type Conversion To uint Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uint_sat_rtn(${1:x})'
+	  'prefix': 'convert_uint_sat_rtn'
+	'Explixit Type Conversion To uint Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uint_sat_rtp(${1:x})'
+	  'prefix': 'convert_uint_sat_rtp'
+	'Explixit Type Conversion To uint Saturated Round Towards Zero':
+	  'body': 'convert_uint_sat_rtz(${1:x})'
+	  'prefix': 'convert_uint_sat_rtz'
+	'Explixit Type Conversion To uint16':
+	  'body': 'convert_uint16(${1:x})'
+	  'prefix': 'convert_uint16'
+	'Explixit Type Conversion To uint16 Round To Nearest Even':
+	  'body': 'convert_uint16_rte(${1:x})'
+	  'prefix': 'convert_uint16_rte'
+	'Explixit Type Conversion To uint16 Round Toward Nevagite Infinity':
+	  'body': 'convert_uint16_rtn(${1:x})'
+	  'prefix': 'convert_uint16_rtn'
+	'Explixit Type Conversion To uint16 Round Toward Positive Infinity':
+	  'body': 'convert_uint16_rtp(${1:x})'
+	  'prefix': 'convert_uint16_rtp'
+	'Explixit Type Conversion To uint16 Round Towards Zero':
+	  'body': 'convert_uint16_rtz(${1:x})'
+	  'prefix': 'convert_uint16_rtz'
+	'Explixit Type Conversion To uint16 Saturated':
+	  'body': 'convert_uint16_sat(${1:x})'
+	  'prefix': 'convert_uint16_sat'
+	'Explixit Type Conversion To uint16 Saturated Round To Nearest Even':
+	  'body': 'convert_uint16_sat_rte(${1:x})'
+	  'prefix': 'convert_uint16_sat_rte'
+	'Explixit Type Conversion To uint16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uint16_sat_rtn(${1:x})'
+	  'prefix': 'convert_uint16_sat_rtn'
+	'Explixit Type Conversion To uint16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uint16_sat_rtp(${1:x})'
+	  'prefix': 'convert_uint16_sat_rtp'
+	'Explixit Type Conversion To uint16 Saturated Round Towards Zero':
+	  'body': 'convert_uint16_sat_rtz(${1:x})'
+	  'prefix': 'convert_uint16_sat_rtz'
+	'Explixit Type Conversion To uint2':
+	  'body': 'convert_uint2(${1:x})'
+	  'prefix': 'convert_uint2'
+	'Explixit Type Conversion To uint2 Round To Nearest Even':
+	  'body': 'convert_uint2_rte(${1:x})'
+	  'prefix': 'convert_uint2_rte'
+	'Explixit Type Conversion To uint2 Round Toward Nevagite Infinity':
+	  'body': 'convert_uint2_rtn(${1:x})'
+	  'prefix': 'convert_uint2_rtn'
+	'Explixit Type Conversion To uint2 Round Toward Positive Infinity':
+	  'body': 'convert_uint2_rtp(${1:x})'
+	  'prefix': 'convert_uint2_rtp'
+	'Explixit Type Conversion To uint2 Round Towards Zero':
+	  'body': 'convert_uint2_rtz(${1:x})'
+	  'prefix': 'convert_uint2_rtz'
+	'Explixit Type Conversion To uint2 Saturated':
+	  'body': 'convert_uint2_sat(${1:x})'
+	  'prefix': 'convert_uint2_sat'
+	'Explixit Type Conversion To uint2 Saturated Round To Nearest Even':
+	  'body': 'convert_uint2_sat_rte(${1:x})'
+	  'prefix': 'convert_uint2_sat_rte'
+	'Explixit Type Conversion To uint2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uint2_sat_rtn(${1:x})'
+	  'prefix': 'convert_uint2_sat_rtn'
+	'Explixit Type Conversion To uint2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uint2_sat_rtp(${1:x})'
+	  'prefix': 'convert_uint2_sat_rtp'
+	'Explixit Type Conversion To uint2 Saturated Round Towards Zero':
+	  'body': 'convert_uint2_sat_rtz(${1:x})'
+	  'prefix': 'convert_uint2_sat_rtz'
+	'Explixit Type Conversion To uint3':
+	  'body': 'convert_uint3(${1:x})'
+	  'prefix': 'convert_uint3'
+	'Explixit Type Conversion To uint3 Round To Nearest Even':
+	  'body': 'convert_uint3_rte(${1:x})'
+	  'prefix': 'convert_uint3_rte'
+	'Explixit Type Conversion To uint3 Round Toward Nevagite Infinity':
+	  'body': 'convert_uint3_rtn(${1:x})'
+	  'prefix': 'convert_uint3_rtn'
+	'Explixit Type Conversion To uint3 Round Toward Positive Infinity':
+	  'body': 'convert_uint3_rtp(${1:x})'
+	  'prefix': 'convert_uint3_rtp'
+	'Explixit Type Conversion To uint3 Round Towards Zero':
+	  'body': 'convert_uint3_rtz(${1:x})'
+	  'prefix': 'convert_uint3_rtz'
+	'Explixit Type Conversion To uint3 Saturated':
+	  'body': 'convert_uint3_sat(${1:x})'
+	  'prefix': 'convert_uint3_sat'
+	'Explixit Type Conversion To uint3 Saturated Round To Nearest Even':
+	  'body': 'convert_uint3_sat_rte(${1:x})'
+	  'prefix': 'convert_uint3_sat_rte'
+	'Explixit Type Conversion To uint3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uint3_sat_rtn(${1:x})'
+	  'prefix': 'convert_uint3_sat_rtn'
+	'Explixit Type Conversion To uint3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uint3_sat_rtp(${1:x})'
+	  'prefix': 'convert_uint3_sat_rtp'
+	'Explixit Type Conversion To uint3 Saturated Round Towards Zero':
+	  'body': 'convert_uint3_sat_rtz(${1:x})'
+	  'prefix': 'convert_uint3_sat_rtz'
+	'Explixit Type Conversion To uint4':
+	  'body': 'convert_uint4(${1:x})'
+	  'prefix': 'convert_uint4'
+	'Explixit Type Conversion To uint4 Round To Nearest Even':
+	  'body': 'convert_uint4_rte(${1:x})'
+	  'prefix': 'convert_uint4_rte'
+	'Explixit Type Conversion To uint4 Round Toward Nevagite Infinity':
+	  'body': 'convert_uint4_rtn(${1:x})'
+	  'prefix': 'convert_uint4_rtn'
+	'Explixit Type Conversion To uint4 Round Toward Positive Infinity':
+	  'body': 'convert_uint4_rtp(${1:x})'
+	  'prefix': 'convert_uint4_rtp'
+	'Explixit Type Conversion To uint4 Round Towards Zero':
+	  'body': 'convert_uint4_rtz(${1:x})'
+	  'prefix': 'convert_uint4_rtz'
+	'Explixit Type Conversion To uint4 Saturated':
+	  'body': 'convert_uint4_sat(${1:x})'
+	  'prefix': 'convert_uint4_sat'
+	'Explixit Type Conversion To uint4 Saturated Round To Nearest Even':
+	  'body': 'convert_uint4_sat_rte(${1:x})'
+	  'prefix': 'convert_uint4_sat_rte'
+	'Explixit Type Conversion To uint4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uint4_sat_rtn(${1:x})'
+	  'prefix': 'convert_uint4_sat_rtn'
+	'Explixit Type Conversion To uint4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uint4_sat_rtp(${1:x})'
+	  'prefix': 'convert_uint4_sat_rtp'
+	'Explixit Type Conversion To uint4 Saturated Round Towards Zero':
+	  'body': 'convert_uint4_sat_rtz(${1:x})'
+	  'prefix': 'convert_uint4_sat_rtz'
+	'Explixit Type Conversion To uint8':
+	  'body': 'convert_uint8(${1:x})'
+	  'prefix': 'convert_uint8'
+	'Explixit Type Conversion To uint8 Round To Nearest Even':
+	  'body': 'convert_uint8_rte(${1:x})'
+	  'prefix': 'convert_uint8_rte'
+	'Explixit Type Conversion To uint8 Round Toward Nevagite Infinity':
+	  'body': 'convert_uint8_rtn(${1:x})'
+	  'prefix': 'convert_uint8_rtn'
+	'Explixit Type Conversion To uint8 Round Toward Positive Infinity':
+	  'body': 'convert_uint8_rtp(${1:x})'
+	  'prefix': 'convert_uint8_rtp'
+	'Explixit Type Conversion To uint8 Round Towards Zero':
+	  'body': 'convert_uint8_rtz(${1:x})'
+	  'prefix': 'convert_uint8_rtz'
+	'Explixit Type Conversion To uint8 Saturated':
+	  'body': 'convert_uint8_sat(${1:x})'
+	  'prefix': 'convert_uint8_sat'
+	'Explixit Type Conversion To uint8 Saturated Round To Nearest Even':
+	  'body': 'convert_uint8_sat_rte(${1:x})'
+	  'prefix': 'convert_uint8_sat_rte'
+	'Explixit Type Conversion To uint8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_uint8_sat_rtn(${1:x})'
+	  'prefix': 'convert_uint8_sat_rtn'
+	'Explixit Type Conversion To uint8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_uint8_sat_rtp(${1:x})'
+	  'prefix': 'convert_uint8_sat_rtp'
+	'Explixit Type Conversion To uint8 Saturated Round Towards Zero':
+	  'body': 'convert_uint8_sat_rtz(${1:x})'
+	  'prefix': 'convert_uint8_sat_rtz'
+	'Explixit Type Conversion To ulong':
+	  'body': 'convert_ulong(${1:x})'
+	  'prefix': 'convert_ulong'
+	'Explixit Type Conversion To ulong Round To Nearest Even':
+	  'body': 'convert_ulong_rte(${1:x})'
+	  'prefix': 'convert_ulong_rte'
+	'Explixit Type Conversion To ulong Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong_rtn(${1:x})'
+	  'prefix': 'convert_ulong_rtn'
+	'Explixit Type Conversion To ulong Round Toward Positive Infinity':
+	  'body': 'convert_ulong_rtp(${1:x})'
+	  'prefix': 'convert_ulong_rtp'
+	'Explixit Type Conversion To ulong Round Towards Zero':
+	  'body': 'convert_ulong_rtz(${1:x})'
+	  'prefix': 'convert_ulong_rtz'
+	'Explixit Type Conversion To ulong Saturated':
+	  'body': 'convert_ulong_sat(${1:x})'
+	  'prefix': 'convert_ulong_sat'
+	'Explixit Type Conversion To ulong Saturated Round To Nearest Even':
+	  'body': 'convert_ulong_sat_rte(${1:x})'
+	  'prefix': 'convert_ulong_sat_rte'
+	'Explixit Type Conversion To ulong Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong_sat_rtn(${1:x})'
+	  'prefix': 'convert_ulong_sat_rtn'
+	'Explixit Type Conversion To ulong Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ulong_sat_rtp(${1:x})'
+	  'prefix': 'convert_ulong_sat_rtp'
+	'Explixit Type Conversion To ulong Saturated Round Towards Zero':
+	  'body': 'convert_ulong_sat_rtz(${1:x})'
+	  'prefix': 'convert_ulong_sat_rtz'
+	'Explixit Type Conversion To ulong16':
+	  'body': 'convert_ulong16(${1:x})'
+	  'prefix': 'convert_ulong16'
+	'Explixit Type Conversion To ulong16 Round To Nearest Even':
+	  'body': 'convert_ulong16_rte(${1:x})'
+	  'prefix': 'convert_ulong16_rte'
+	'Explixit Type Conversion To ulong16 Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong16_rtn(${1:x})'
+	  'prefix': 'convert_ulong16_rtn'
+	'Explixit Type Conversion To ulong16 Round Toward Positive Infinity':
+	  'body': 'convert_ulong16_rtp(${1:x})'
+	  'prefix': 'convert_ulong16_rtp'
+	'Explixit Type Conversion To ulong16 Round Towards Zero':
+	  'body': 'convert_ulong16_rtz(${1:x})'
+	  'prefix': 'convert_ulong16_rtz'
+	'Explixit Type Conversion To ulong16 Saturated':
+	  'body': 'convert_ulong16_sat(${1:x})'
+	  'prefix': 'convert_ulong16_sat'
+	'Explixit Type Conversion To ulong16 Saturated Round To Nearest Even':
+	  'body': 'convert_ulong16_sat_rte(${1:x})'
+	  'prefix': 'convert_ulong16_sat_rte'
+	'Explixit Type Conversion To ulong16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong16_sat_rtn(${1:x})'
+	  'prefix': 'convert_ulong16_sat_rtn'
+	'Explixit Type Conversion To ulong16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ulong16_sat_rtp(${1:x})'
+	  'prefix': 'convert_ulong16_sat_rtp'
+	'Explixit Type Conversion To ulong16 Saturated Round Towards Zero':
+	  'body': 'convert_ulong16_sat_rtz(${1:x})'
+	  'prefix': 'convert_ulong16_sat_rtz'
+	'Explixit Type Conversion To ulong2':
+	  'body': 'convert_ulong2(${1:x})'
+	  'prefix': 'convert_ulong2'
+	'Explixit Type Conversion To ulong2 Round To Nearest Even':
+	  'body': 'convert_ulong2_rte(${1:x})'
+	  'prefix': 'convert_ulong2_rte'
+	'Explixit Type Conversion To ulong2 Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong2_rtn(${1:x})'
+	  'prefix': 'convert_ulong2_rtn'
+	'Explixit Type Conversion To ulong2 Round Toward Positive Infinity':
+	  'body': 'convert_ulong2_rtp(${1:x})'
+	  'prefix': 'convert_ulong2_rtp'
+	'Explixit Type Conversion To ulong2 Round Towards Zero':
+	  'body': 'convert_ulong2_rtz(${1:x})'
+	  'prefix': 'convert_ulong2_rtz'
+	'Explixit Type Conversion To ulong2 Saturated':
+	  'body': 'convert_ulong2_sat(${1:x})'
+	  'prefix': 'convert_ulong2_sat'
+	'Explixit Type Conversion To ulong2 Saturated Round To Nearest Even':
+	  'body': 'convert_ulong2_sat_rte(${1:x})'
+	  'prefix': 'convert_ulong2_sat_rte'
+	'Explixit Type Conversion To ulong2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong2_sat_rtn(${1:x})'
+	  'prefix': 'convert_ulong2_sat_rtn'
+	'Explixit Type Conversion To ulong2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ulong2_sat_rtp(${1:x})'
+	  'prefix': 'convert_ulong2_sat_rtp'
+	'Explixit Type Conversion To ulong2 Saturated Round Towards Zero':
+	  'body': 'convert_ulong2_sat_rtz(${1:x})'
+	  'prefix': 'convert_ulong2_sat_rtz'
+	'Explixit Type Conversion To ulong3':
+	  'body': 'convert_ulong3(${1:x})'
+	  'prefix': 'convert_ulong3'
+	'Explixit Type Conversion To ulong3 Round To Nearest Even':
+	  'body': 'convert_ulong3_rte(${1:x})'
+	  'prefix': 'convert_ulong3_rte'
+	'Explixit Type Conversion To ulong3 Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong3_rtn(${1:x})'
+	  'prefix': 'convert_ulong3_rtn'
+	'Explixit Type Conversion To ulong3 Round Toward Positive Infinity':
+	  'body': 'convert_ulong3_rtp(${1:x})'
+	  'prefix': 'convert_ulong3_rtp'
+	'Explixit Type Conversion To ulong3 Round Towards Zero':
+	  'body': 'convert_ulong3_rtz(${1:x})'
+	  'prefix': 'convert_ulong3_rtz'
+	'Explixit Type Conversion To ulong3 Saturated':
+	  'body': 'convert_ulong3_sat(${1:x})'
+	  'prefix': 'convert_ulong3_sat'
+	'Explixit Type Conversion To ulong3 Saturated Round To Nearest Even':
+	  'body': 'convert_ulong3_sat_rte(${1:x})'
+	  'prefix': 'convert_ulong3_sat_rte'
+	'Explixit Type Conversion To ulong3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong3_sat_rtn(${1:x})'
+	  'prefix': 'convert_ulong3_sat_rtn'
+	'Explixit Type Conversion To ulong3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ulong3_sat_rtp(${1:x})'
+	  'prefix': 'convert_ulong3_sat_rtp'
+	'Explixit Type Conversion To ulong3 Saturated Round Towards Zero':
+	  'body': 'convert_ulong3_sat_rtz(${1:x})'
+	  'prefix': 'convert_ulong3_sat_rtz'
+	'Explixit Type Conversion To ulong4':
+	  'body': 'convert_ulong4(${1:x})'
+	  'prefix': 'convert_ulong4'
+	'Explixit Type Conversion To ulong4 Round To Nearest Even':
+	  'body': 'convert_ulong4_rte(${1:x})'
+	  'prefix': 'convert_ulong4_rte'
+	'Explixit Type Conversion To ulong4 Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong4_rtn(${1:x})'
+	  'prefix': 'convert_ulong4_rtn'
+	'Explixit Type Conversion To ulong4 Round Toward Positive Infinity':
+	  'body': 'convert_ulong4_rtp(${1:x})'
+	  'prefix': 'convert_ulong4_rtp'
+	'Explixit Type Conversion To ulong4 Round Towards Zero':
+	  'body': 'convert_ulong4_rtz(${1:x})'
+	  'prefix': 'convert_ulong4_rtz'
+	'Explixit Type Conversion To ulong4 Saturated':
+	  'body': 'convert_ulong4_sat(${1:x})'
+	  'prefix': 'convert_ulong4_sat'
+	'Explixit Type Conversion To ulong4 Saturated Round To Nearest Even':
+	  'body': 'convert_ulong4_sat_rte(${1:x})'
+	  'prefix': 'convert_ulong4_sat_rte'
+	'Explixit Type Conversion To ulong4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong4_sat_rtn(${1:x})'
+	  'prefix': 'convert_ulong4_sat_rtn'
+	'Explixit Type Conversion To ulong4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ulong4_sat_rtp(${1:x})'
+	  'prefix': 'convert_ulong4_sat_rtp'
+	'Explixit Type Conversion To ulong4 Saturated Round Towards Zero':
+	  'body': 'convert_ulong4_sat_rtz(${1:x})'
+	  'prefix': 'convert_ulong4_sat_rtz'
+	'Explixit Type Conversion To ulong8':
+	  'body': 'convert_ulong8(${1:x})'
+	  'prefix': 'convert_ulong8'
+	'Explixit Type Conversion To ulong8 Round To Nearest Even':
+	  'body': 'convert_ulong8_rte(${1:x})'
+	  'prefix': 'convert_ulong8_rte'
+	'Explixit Type Conversion To ulong8 Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong8_rtn(${1:x})'
+	  'prefix': 'convert_ulong8_rtn'
+	'Explixit Type Conversion To ulong8 Round Toward Positive Infinity':
+	  'body': 'convert_ulong8_rtp(${1:x})'
+	  'prefix': 'convert_ulong8_rtp'
+	'Explixit Type Conversion To ulong8 Round Towards Zero':
+	  'body': 'convert_ulong8_rtz(${1:x})'
+	  'prefix': 'convert_ulong8_rtz'
+	'Explixit Type Conversion To ulong8 Saturated':
+	  'body': 'convert_ulong8_sat(${1:x})'
+	  'prefix': 'convert_ulong8_sat'
+	'Explixit Type Conversion To ulong8 Saturated Round To Nearest Even':
+	  'body': 'convert_ulong8_sat_rte(${1:x})'
+	  'prefix': 'convert_ulong8_sat_rte'
+	'Explixit Type Conversion To ulong8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ulong8_sat_rtn(${1:x})'
+	  'prefix': 'convert_ulong8_sat_rtn'
+	'Explixit Type Conversion To ulong8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ulong8_sat_rtp(${1:x})'
+	  'prefix': 'convert_ulong8_sat_rtp'
+	'Explixit Type Conversion To ulong8 Saturated Round Towards Zero':
+	  'body': 'convert_ulong8_sat_rtz(${1:x})'
+	  'prefix': 'convert_ulong8_sat_rtz'
+	'Explixit Type Conversion To ushort':
+	  'body': 'convert_ushort(${1:x})'
+	  'prefix': 'convert_ushort'
+	'Explixit Type Conversion To ushort Round To Nearest Even':
+	  'body': 'convert_ushort_rte(${1:x})'
+	  'prefix': 'convert_ushort_rte'
+	'Explixit Type Conversion To ushort Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort_rtn(${1:x})'
+	  'prefix': 'convert_ushort_rtn'
+	'Explixit Type Conversion To ushort Round Toward Positive Infinity':
+	  'body': 'convert_ushort_rtp(${1:x})'
+	  'prefix': 'convert_ushort_rtp'
+	'Explixit Type Conversion To ushort Round Towards Zero':
+	  'body': 'convert_ushort_rtz(${1:x})'
+	  'prefix': 'convert_ushort_rtz'
+	'Explixit Type Conversion To ushort Saturated':
+	  'body': 'convert_ushort_sat(${1:x})'
+	  'prefix': 'convert_ushort_sat'
+	'Explixit Type Conversion To ushort Saturated Round To Nearest Even':
+	  'body': 'convert_ushort_sat_rte(${1:x})'
+	  'prefix': 'convert_ushort_sat_rte'
+	'Explixit Type Conversion To ushort Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort_sat_rtn(${1:x})'
+	  'prefix': 'convert_ushort_sat_rtn'
+	'Explixit Type Conversion To ushort Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ushort_sat_rtp(${1:x})'
+	  'prefix': 'convert_ushort_sat_rtp'
+	'Explixit Type Conversion To ushort Saturated Round Towards Zero':
+	  'body': 'convert_ushort_sat_rtz(${1:x})'
+	  'prefix': 'convert_ushort_sat_rtz'
+	'Explixit Type Conversion To ushort16':
+	  'body': 'convert_ushort16(${1:x})'
+	  'prefix': 'convert_ushort16'
+	'Explixit Type Conversion To ushort16 Round To Nearest Even':
+	  'body': 'convert_ushort16_rte(${1:x})'
+	  'prefix': 'convert_ushort16_rte'
+	'Explixit Type Conversion To ushort16 Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort16_rtn(${1:x})'
+	  'prefix': 'convert_ushort16_rtn'
+	'Explixit Type Conversion To ushort16 Round Toward Positive Infinity':
+	  'body': 'convert_ushort16_rtp(${1:x})'
+	  'prefix': 'convert_ushort16_rtp'
+	'Explixit Type Conversion To ushort16 Round Towards Zero':
+	  'body': 'convert_ushort16_rtz(${1:x})'
+	  'prefix': 'convert_ushort16_rtz'
+	'Explixit Type Conversion To ushort16 Saturated':
+	  'body': 'convert_ushort16_sat(${1:x})'
+	  'prefix': 'convert_ushort16_sat'
+	'Explixit Type Conversion To ushort16 Saturated Round To Nearest Even':
+	  'body': 'convert_ushort16_sat_rte(${1:x})'
+	  'prefix': 'convert_ushort16_sat_rte'
+	'Explixit Type Conversion To ushort16 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort16_sat_rtn(${1:x})'
+	  'prefix': 'convert_ushort16_sat_rtn'
+	'Explixit Type Conversion To ushort16 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ushort16_sat_rtp(${1:x})'
+	  'prefix': 'convert_ushort16_sat_rtp'
+	'Explixit Type Conversion To ushort16 Saturated Round Towards Zero':
+	  'body': 'convert_ushort16_sat_rtz(${1:x})'
+	  'prefix': 'convert_ushort16_sat_rtz'
+	'Explixit Type Conversion To ushort2':
+	  'body': 'convert_ushort2(${1:x})'
+	  'prefix': 'convert_ushort2'
+	'Explixit Type Conversion To ushort2 Round To Nearest Even':
+	  'body': 'convert_ushort2_rte(${1:x})'
+	  'prefix': 'convert_ushort2_rte'
+	'Explixit Type Conversion To ushort2 Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort2_rtn(${1:x})'
+	  'prefix': 'convert_ushort2_rtn'
+	'Explixit Type Conversion To ushort2 Round Toward Positive Infinity':
+	  'body': 'convert_ushort2_rtp(${1:x})'
+	  'prefix': 'convert_ushort2_rtp'
+	'Explixit Type Conversion To ushort2 Round Towards Zero':
+	  'body': 'convert_ushort2_rtz(${1:x})'
+	  'prefix': 'convert_ushort2_rtz'
+	'Explixit Type Conversion To ushort2 Saturated':
+	  'body': 'convert_ushort2_sat(${1:x})'
+	  'prefix': 'convert_ushort2_sat'
+	'Explixit Type Conversion To ushort2 Saturated Round To Nearest Even':
+	  'body': 'convert_ushort2_sat_rte(${1:x})'
+	  'prefix': 'convert_ushort2_sat_rte'
+	'Explixit Type Conversion To ushort2 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort2_sat_rtn(${1:x})'
+	  'prefix': 'convert_ushort2_sat_rtn'
+	'Explixit Type Conversion To ushort2 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ushort2_sat_rtp(${1:x})'
+	  'prefix': 'convert_ushort2_sat_rtp'
+	'Explixit Type Conversion To ushort2 Saturated Round Towards Zero':
+	  'body': 'convert_ushort2_sat_rtz(${1:x})'
+	  'prefix': 'convert_ushort2_sat_rtz'
+	'Explixit Type Conversion To ushort3':
+	  'body': 'convert_ushort3(${1:x})'
+	  'prefix': 'convert_ushort3'
+	'Explixit Type Conversion To ushort3 Round To Nearest Even':
+	  'body': 'convert_ushort3_rte(${1:x})'
+	  'prefix': 'convert_ushort3_rte'
+	'Explixit Type Conversion To ushort3 Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort3_rtn(${1:x})'
+	  'prefix': 'convert_ushort3_rtn'
+	'Explixit Type Conversion To ushort3 Round Toward Positive Infinity':
+	  'body': 'convert_ushort3_rtp(${1:x})'
+	  'prefix': 'convert_ushort3_rtp'
+	'Explixit Type Conversion To ushort3 Round Towards Zero':
+	  'body': 'convert_ushort3_rtz(${1:x})'
+	  'prefix': 'convert_ushort3_rtz'
+	'Explixit Type Conversion To ushort3 Saturated':
+	  'body': 'convert_ushort3_sat(${1:x})'
+	  'prefix': 'convert_ushort3_sat'
+	'Explixit Type Conversion To ushort3 Saturated Round To Nearest Even':
+	  'body': 'convert_ushort3_sat_rte(${1:x})'
+	  'prefix': 'convert_ushort3_sat_rte'
+	'Explixit Type Conversion To ushort3 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort3_sat_rtn(${1:x})'
+	  'prefix': 'convert_ushort3_sat_rtn'
+	'Explixit Type Conversion To ushort3 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ushort3_sat_rtp(${1:x})'
+	  'prefix': 'convert_ushort3_sat_rtp'
+	'Explixit Type Conversion To ushort3 Saturated Round Towards Zero':
+	  'body': 'convert_ushort3_sat_rtz(${1:x})'
+	  'prefix': 'convert_ushort3_sat_rtz'
+	'Explixit Type Conversion To ushort4':
+	  'body': 'convert_ushort4(${1:x})'
+	  'prefix': 'convert_ushort4'
+	'Explixit Type Conversion To ushort4 Round To Nearest Even':
+	  'body': 'convert_ushort4_rte(${1:x})'
+	  'prefix': 'convert_ushort4_rte'
+	'Explixit Type Conversion To ushort4 Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort4_rtn(${1:x})'
+	  'prefix': 'convert_ushort4_rtn'
+	'Explixit Type Conversion To ushort4 Round Toward Positive Infinity':
+	  'body': 'convert_ushort4_rtp(${1:x})'
+	  'prefix': 'convert_ushort4_rtp'
+	'Explixit Type Conversion To ushort4 Round Towards Zero':
+	  'body': 'convert_ushort4_rtz(${1:x})'
+	  'prefix': 'convert_ushort4_rtz'
+	'Explixit Type Conversion To ushort4 Saturated':
+	  'body': 'convert_ushort4_sat(${1:x})'
+	  'prefix': 'convert_ushort4_sat'
+	'Explixit Type Conversion To ushort4 Saturated Round To Nearest Even':
+	  'body': 'convert_ushort4_sat_rte(${1:x})'
+	  'prefix': 'convert_ushort4_sat_rte'
+	'Explixit Type Conversion To ushort4 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort4_sat_rtn(${1:x})'
+	  'prefix': 'convert_ushort4_sat_rtn'
+	'Explixit Type Conversion To ushort4 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ushort4_sat_rtp(${1:x})'
+	  'prefix': 'convert_ushort4_sat_rtp'
+	'Explixit Type Conversion To ushort4 Saturated Round Towards Zero':
+	  'body': 'convert_ushort4_sat_rtz(${1:x})'
+	  'prefix': 'convert_ushort4_sat_rtz'
+	'Explixit Type Conversion To ushort8':
+	  'body': 'convert_ushort8(${1:x})'
+	  'prefix': 'convert_ushort8'
+	'Explixit Type Conversion To ushort8 Round To Nearest Even':
+	  'body': 'convert_ushort8_rte(${1:x})'
+	  'prefix': 'convert_ushort8_rte'
+	'Explixit Type Conversion To ushort8 Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort8_rtn(${1:x})'
+	  'prefix': 'convert_ushort8_rtn'
+	'Explixit Type Conversion To ushort8 Round Toward Positive Infinity':
+	  'body': 'convert_ushort8_rtp(${1:x})'
+	  'prefix': 'convert_ushort8_rtp'
+	'Explixit Type Conversion To ushort8 Round Towards Zero':
+	  'body': 'convert_ushort8_rtz(${1:x})'
+	  'prefix': 'convert_ushort8_rtz'
+	'Explixit Type Conversion To ushort8 Saturated':
+	  'body': 'convert_ushort8_sat(${1:x})'
+	  'prefix': 'convert_ushort8_sat'
+	'Explixit Type Conversion To ushort8 Saturated Round To Nearest Even':
+	  'body': 'convert_ushort8_sat_rte(${1:x})'
+	  'prefix': 'convert_ushort8_sat_rte'
+	'Explixit Type Conversion To ushort8 Saturated Round Toward Nevagite Infinity':
+	  'body': 'convert_ushort8_sat_rtn(${1:x})'
+	  'prefix': 'convert_ushort8_sat_rtn'
+	'Explixit Type Conversion To ushort8 Saturated Round Toward Positive Infinity':
+	  'body': 'convert_ushort8_sat_rtp(${1:x})'
+	  'prefix': 'convert_ushort8_sat_rtp'
+	'Explixit Type Conversion To ushort8 Saturated Round Towards Zero':
+	  'body': 'convert_ushort8_sat_rtz(${1:x})'
+	  'prefix': 'convert_ushort8_sat_rtz'
+	'X With The Sign Of Y':
+	  'body': 'copysign(${1:x}, ${2:y})'
+	  'prefix': 'copysign'
+	'Consine':
+	  'body': 'cos(${1:x})'
+	  'prefix': 'cos'
+	'Hyperbolic Cosine':
+	  'body': 'cosh(${1:x})'
+	  'prefix': 'cosh'
+	'Cosine Of X By Pi':
+	  'body': 'cospi(${1:x})'
+	  'prefix': 'cospi'
+	'Cross Product':
+	  'body': 'cross(${1:p0}, ${2:p1})'
+	  'prefix': 'cross'
+	'Degrees':
+	  'body': 'degrees(${1:radians})'
+	  'prefix': 'degrees'
+	'Distance':
+	  'body': 'distance(${1:p0}, ${2:p1})'
+	  'prefix': 'distance'
+	'Dot Product':
+	  'body': 'dot(${1:p0}, ${2:p1})'
+	  'prefix': 'dot'
+	'Edian Attribute':
+	  'body': 'endian($1)'
+	  'prefix': 'endian'
+	'Error Function':
+	  'body': 'erf(${1:x})'
+	  'prefix': 'erf'
+	'Compementary Error Function':
+	  'body': 'erfc(${1:x})'
+	  'prefix': 'erfc'
+	'Base e Exponential of x':
+	  'body': 'exp(${1:x})'
+	  'prefix': 'exp'
+	'Base 10 Exponential Of x':
+	  'body': 'exp10(${1:x})'
+	  'prefix': 'exp10'
+	'Base 2 Exponential x':
+	  'body': 'exp2(${1:x})'
+	  'prefix': 'exp2'
+ 	'e ^ x - 1.0':
+ 	  'body': 'expm1(${1:x})'
+ 	  'prefix': 'expm1'
+  'Float Absolute Value':
+	  'body': 'fabs(${1:x})'
+	  'prefix': 'fabs'
+	'Fast Distance':
+	  'body': 'fast_distance(${1:p0}, ${2:p1})'
+	  'prefix': 'fast_distance'
+	'Fast Length':
+	  'body': 'fast_length(${1:p})'
+	  'prefix': 'fast_length'
+	'Fast Normalize':
+	  'body': 'fast_normalize(${1:p})'
+	  'prefix': 'fast_normalize'
+	'Positive Difference Between x And y':
+	  'body': 'fdim(${1:x}, ${2:y})'
+	  'prefix': 'fdim'
+	'Round To Integer Toward - Infinity':
+	  'body': 'floor(${1:x})'
+	  'prefix': 'floor'
+	'Multiply And Add, Then Round':
+	  'body': 'fma(${1:a}, ${2:b}, ${3:c})'
+	  'prefix': 'fma'
+	'Returns The Greater Of x And y':
+	  'body': 'fmax(${1:x}, ${2:y})'
+	  'prefix': 'fmax'
+	'Returns Lesser Of x And y':
+	  'body': 'fmin(${1:x}, ${2:y})'
+	  'prefix': 'fmin'
+	'Modulus':
+	  'body': 'fmod(${1:x}, 4{2:y})'
+	  'prefix': 'fmod'
+	'Fractional Value In x':
+	  'body': 'fract(${1:x}, ${2:iptr})'
+	  'prefix': 'fract'
+	'Extract Mantissa And Exponent':
+	  'body': 'frexp(${1:x}, &${2:exp})'
+	  'prefix': 'frexp'
+	'Returns Unique Global Work-Item ID':
+	  'body': 'get_global_id(${1:dimindx})'
+	  'prefix': 'get_global_id'
+	'Returns Offset Values':
+	  'body': 'get_global_offset(${1:dimindx})'
+	  'prefix': 'get_global_offset'
+	'Returns Number Of Global Work-Items':
+	  'body': 'get_global_size(${1:dimindx})'
+	  'prefix': 'get_global_size'
+	'Returns Work-Group ID':
+	  'body': 'get_group_id(${1:dimindx})'
+	  'prefix': 'get_group_id'
+	'Returns Channel Data Type':
+	  'body': 'get_image_channel_data_type(${1:image})'
+	  'prefix': 'get_image_channel_data_type'
+	'Returns Image Channel Data Order':
+	  'body': 'get_image_channel_order'
+	  'prefix': 'get_image_channel_order'
+	'Returns Image Depth In Pixels':
+	  'body': 'get_image_depth(${1:image})'
+	  'prefix': 'get_image_depth'
+	'Returns Image Dimensions':
+	  'body': 'get_image_dim(${1:image})'
+	  'prefix': 'get_image_dim'
+	'Returns Image Height In Pixels':
+	  'body': 'get_image_height(${1:image})'
+	  'prefix': 'get_image_height'
+	'Returns Image Width In Pixels':
+	  'body': 'get_image_width(${1:image})'
+	  'prefix': 'get_image_width'
+	'Returns Unique Local Work-Item ID':
+	  'body': 'get_local_id(${1:dimindx})'
+	  'prefix': 'get_local_id'
+	'Returns Number Of Local Work-Items':
+	  'body': 'get_local_size(${1:dimindx})'
+	  'prefix': 'get_local_size'
+	'Returns Number Of Work-Groups':
+	  'body': 'get_num_groups(${1:dimindx})'
+	  'prefix': 'get_num_groups'
+	'Return Number Of Dimensions In Use':
+	  'body': 'get_work_dim()'
+	  'prefix': 'get_work_dim'
+	'hadd (x + y) >> 1':
+	  'body': 'hadd(${1:x}, ${2:y})'
+	  'prefix': 'hadd'
+	'Cosine':
+	  'body': 'half_cos(${1:x})'
+	  'prefix': 'half_cos'
+	'Division':
+	  'body': 'half_division(${1:x}, ${2:y})'
+	  'prefix': 'half_divide'
+	'Base e Exponential Of x':
+	  'body': 'half_exp(${1:x})'
+	  'prefix': 'half_exp'
+	'Base 10 Exponential Of x':
+	  'body': 'halg_exp10(${1:x})'
+	  'prefix': 'half_exp10'
+	'Base 2 Exponent Of x':
+	  'body': 'half_exp2(${1:x})'
+	  'prefix': 'halg_exp2'
+	'Natural Logarithm':
+	  'body': 'half_log(${1:x})'
+	  'prefix': 'half_log'
+	'Base 10 Logarithm':
+	  'body': 'half_log10(${1:x})'
+	  'prefix': 'half_log10'
+	'Base 2 Logarithm':
+	  'body': 'half_log2(${1:x})'
+	  'prefix': 'half_log2'
+	'x To The Power +y':
+	  'body': 'half_powr(${1:x}, ${2:y})'
+	  'prefix': 'half_powr'
+	'Inverse Square Root':
+	  'body': 'half_sqrt(${1:x})'
+	  'prefix': 'half_sqrt'
+	'Sine':
+	  'body': 'half_sine(${1:x})'
+	  'prefix': 'half_sin'
+	'Square Root':
+	  'body': 'half_sqrt(${1:x})'
+	  'prefix': 'half_sqrt'
+	'Tangent':
+	  'body': 'half_tan(${1:x})'
+	  'prefix': 'half_tan'
+	'Square Root Of x^2 + y^2':
+	  'body': 'hypot(${1:x}, ${2:y})'
+	  'prefix': 'hypot'
+	'Exponent As An Integer':
+	  'body': 'ilogb(${1:x})'
+	  'prefix': 'ilogb'
+	'Compare x == y':
+	  'body': 'isequal(${1:x}, ${2:y})'
+	  'prefix': 'isequal'
+	'Test For Finite Value':
+	  'body': 'isfinite(${1:x})'
+	  'prefix': 'isfinite'
+	'Compare x > y':
+	  'body': 'isgreater(${1:x}, ${2:y})'
+	  'prefix': 'isgreater'
+	'Compare x >= y':
+	  'body': 'isgreaterequal(${1:x}, ${2:y})'
+	  'prefix': 'isgreaterequal'
+	'Test For Infiniy Value':
+	  'body': 'isinf(${1:x})'
+	  'prefix': 'isinf'
+	'Compare x &lt y':
+	  'body': 'isless(${1:x}, ${2:y})'
+	  'prefix': 'isless'
+	'Compare x &lt= y':
+	  'body': 'islessequal(${1:x}, ${2:y})'
+	  'prefix': 'islessequal'
+	'Compare (x &lt y) || (x > y)':
+	  'body': 'islessgreater(${1:x}, ${2:y})'
+	  'prefix': 'islessgreater'
+	'Test For A NaN':
+	  'body': 'isnan(${1:x})'
+	  'prefix': 'isnan'
+	'Test For A Normal Value':
+	  'body': 'isnormal(${1:x})'
+	  'prefix': 'isnormal'
+	'Compare x != y':
+	  'body': 'isnotequal(${1:x}, ${2:y})'
+	  'prefix': 'isnotequal'
+	'Test If Arguments Are Ordered':
+	  'body': 'isordered(${1:x}, ${2:y})'
+	  'prefix': 'isordered'
+	'Test If Arguments Are Unordered':
+	  'body': 'isunordered(${1:x}, ${2:y})'
+	  'prefix': 'isunordered'
+	'Kernel Function':
+	  'body': 'kernel void ${1:foo}(${2:arguments})\n{\n\t${0:/* code */}\n}'
+	  'prefix': 'kernel'
+	'Multiply x By 2 To The Power k':
+	  'body': 'ldexp(${1:x}, ${2:k})'
+	  'prefix': 'ldexp'
+	'Length':
+	  'body': 'length(${1:p})'
+	  'prefix': 'length'
+	'Log Gamma':
+	  'body': 'lgamma(${1:x})'
+	  'prefix': 'lgamma'
+	'Log Gamma':
+	  'body': 'lgamma_r(${1:x}, ${2:signp})'
+	  'prefix': 'lgamma_r'
+	'Natural Logarithm':
+	  'body': 'log(${1:x})'
+	  'prefix': 'log'
+	'Base 10 Logarithm':
+	  'body': 'log10(${1:x})'
+	  'prefix': 'log10'
+	'Natural Logarithm Of 1.0 + x':
+	  'body': 'log1p(${1:x})'
+	  'prefix': 'log1p'
+	'Base 2 Logarithm':
+	  'body': 'log2(${1:x})'
+	  'prefix': 'log2'
+	'Exponent Of x':
+	  'body': 'logb(${1:x})'
+	  'prefix': 'logb'
+	'Approximates a * b + c':
+	  'body': 'mad(${1:a}, ${2:b}, ${3:c})'
+	  'prefix': 'mad'
+	'Returns mul_hi(a, g) + c':
+	  'body': 'mad_hi(mul_hi(${1:a}, ${2:b}, ${3:c}))'
+	  'prefix': 'mad_hi'
+	'Returns a * b + c and staturates it':
+	  'body': 'mad_sat(${1:a}, ${2:b}, ${3:c})'
+	  'prefix': 'mad_sat'
+	'Fast Multiply Add':
+	  'body': 'mad24(${1:x}, ${2:y}, ${3:z})'
+	  'prefix': 'mad24'
+	'Maximum':
+	  'body': 'max(${1:x}, ${2:y})'
+	  'prefix': 'max'
+	'Returns Argument With Greatest Magnitude':
+	  'body': 'maxmag(${1:x}, ${2:y})'
+	  'prefix': 'maxmag'
+	'Mem Fence':
+	  'body': 'mem_fence(${1:flags})'
+	  'prefix': 'mem_fence'
+	'Minimum':
+	  'body': 'min(${1:x}, ${2:y})'
+	  'prefix': 'min'
+	'Returns Argument With Lease Magnitude':
+	  'body': 'minmag(${1:x}, ${2:y})'
+	  'prefix': 'minmag'
+	'Mix':
+	  'body': 'mix(${1:x}, ${2:y}, ${3:a})'
+	  'prefix': 'mix'
+	'Decompose Float':
+	  'body': 'modf(${1:x}, &${2:iptr})'
+	  'prefix': 'modf'
+	'Returns High Half of Product':
+	  'body': 'mul_hi(${1:x}, ${2:y})'
+	  'prefix': 'mul_hi'
+	'Fast Integer Multiply':
+	  'body': 'mul24(${1:x}, ${2:y})'
+	  'prefix': 'mul24'
+	'Quiet NaN':
+	  'body': 'nan(${1:nancode})'
+	  'prefix': 'nan'
+	'Cosine':
+	  'body': 'native_cos($1:x)'
+	  'prefix': 'native_cos'
+	'Divide':
+	  'body': 'native_divie(${1:x}, ${2:y})'
+	  'prefix': 'native_divide'
+	'Base e Exponential Of x':
+	  'body': 'native_exp(${1:x})'
+	  'prefix': 'native_exp'
+	'Base 10 Exponential Of x':
+	  'body': 'native_exp10(${1:x})'
+	  'prefix': 'native_exp10'
+	'Base 2 Exponential Of x':
+	  'body': 'native_exp2(${1:x})'
+	  'prefix': 'native_exp2'
+	'Natural Logarithm':
+	  'body': 'native_log(${1:x})'
+	  'prefix': 'native_log'
+	'Base 10 Logarithm':
+	  'body': 'native_log10(${1:x})'
+	  'prefix': 'native_log10'
+	'Base 2 Logarithm':
+	  'body': 'native_log2(${1:x})'
+	  'prefix': 'native_log2'
+	'x To The Power +y':
+	  'body': 'native_powr(${1:x}, ${2:y})'
+	  'prefix': 'native_powr'
+	'Inverse Square Root':
+	  'body': 'native_rsqrt(${1:x})'
+	  'prefix': 'native_rsqrt'
+	'Sine':
+	  'body': 'native_sin(${1:x})'
+	  'prefix': 'native_sin'
+	'Square Root':
+	  'body': 'native_sqrt(${1:x})'
+	  'prefix': 'native_sqrt'
+	'Tangent':
+	  'body': 'native_tan(${1:x})'
+	  'prefix': 'native_tan'
+	'Next Float After x In Direction y':
+	  'body': 'nextafter(${1:x}, ${2:y})'
+	  'prefix': 'nextafter'
+	'Normalize':
+	  'body': 'normalize(${1:p})'
+	  'prefix': 'normalize'
+	'Number of Non-zero Bits':
+	  'body': 'popcount(${1:x})'
+	  'prefix': 'popcount'
+	'x To The Power y':
+	  'body': 'pow(${1:x}, ${2:y})'
+	  'prefix': 'pow'
+	'x To The Power Integer y':
+	  'body': 'pown(${1:x}, ${2:y})'
+	  'prefix': 'pown'
+	'x To The Power +y':
+	  'body': 'powr(${1:x}, ${2:y})'
+	  'prefix': 'powr'
+	'Prefetch Bytes Into Global Cache':
+	  'body': 'prefetch(${1:ptr}, ${2:num_gentypes})'
+	  'prefix': 'prefetch'
+	'Radians':
+	  'body': 'radians(${1:degress})'
+	  'prefix': 'radians'
+	'Read Image Element Float':
+	  'body': 'read_imagef(${1:image}, ${2:sampler}, ${3:coord})'
+	  'prefix': 'read_imagef'
+	'Read Image Element Half Float':
+	  'body': 'read_imageh(${1:image}, ${2:sampler}, ${3:coord})'
+	  'prefix': 'read_imageh'
+	'Read Mem Fence':
+	  'body': 'read_mem_fence(${1:flags})'
+	  'prefix': 'read_mem_fence'
+	'Float Remainder':
+	  'body': 'remainder(${1:x}, ${2:y})'
+	  'prefix': 'remainder'
+	'Float Remainder Quotient':
+	  'body': 'remquo(${1:x}, ${2:y}, &${3:quo})'
+	  'prefix': 'remquo'
+	'Work Group Size Hint':
+	  'body': 'work_group_size_hint(${1:x}, ${2:y}, ${3:z})'
+	  'prefix': 'work_group_size_hint'
+	'rhadd Returns (x + y + 1) >> 1':
+	  'body': 'rhadd(${1:x}, ${2:y})'
+	  'prefix': 'rhadd'
+	'Round To Nearest Even Integer':
+	  'body': 'rint(${1:x})'
+	  'prefix': 'rint'
+	'Compute x To The Power 1/y':
+	  'body': 'rootn(${1:x}, ${2:y})'
+	  'prefix': 'rootn'
+	'Rotate Bits Left':
+	  'body': 'rotate(${1:v}, ${2:i})'
+	  'prefix': 'rotate'
+	'Rounding Function':
+	  'body': 'round(${1:x})'
+	  'prefix': 'round'
+	'Inverse Square Root':
+	  'body': 'rsqrt(${1:x})'
+	  'prefix': 'rsqrt'
+	'Select':
+	  'body': 'select(${1:a}, ${2:b}, ${3:c})'
+	  'prefix': 'select'
+	'Constructs Permutation Of Elements From A Vector':
+	  'body': 'suffle(${1:x}, ${2:mask})'
+	  'prefix': 'shuffle'
+	'Constructs A Permutation Of Elements From Two Vectors':
+	  'body': 'shuffle2(${1:x}, ${2:y}, ${3:mask})'
+	  'prefix': 'shuffle2'
+	'Sing':
+	  'body': 'sign(${1:x})'
+	  'prefix': 'sign'
+	'Test For Sign Bit':
+	  'body': 'signbit(${1:x})'
+	  'prefix': 'signbit'
+	'Sine':
+	  'body': 'sin(${1:x})'
+	  'prefix': 'sin'
+	'Sine And Cosine':
+	  'body': 'sincos(${1:x}, &${2:cosval})'
+	  'prefix': 'sincos'
+	'Hyperbolic Sine':
+	  'body': 'sinh(${1:x})'
+	  'prefix': 'sinh'
+	'Sine Pi * x':
+	  'body': 'sinpi(${1:x})'
+	  'prefix': 'sinpi'
+	'Smooth Step':
+	  'body': 'smoothstep(${1:edge0}, ${2:edge1}, ${3:x})'
+	  'prefix': 'smoothstep'
+	'Square Root':
+	  'body': 'sqrt(${1:x})'
+	  'prefix': 'sqrt'
+	'Step':
+	  'body': 'step(${1:edge}, ${2:x})'
+	  'prefix': 'step'
+	'Return x -y and Saturates':
+	  'body': 'sub_sat(${1:x}, ${2:y})'
+	  'prefix': 'sub_sat'
+	'Tangent':
+	  'body': 'tan(${1:x})'
+	  'prefix': 'tan'
+	'Hyperbolic Tangent':
+	  'body': 'tanh(${1:x})'
+	  'prefix': 'tanh'
+	'Tangent Pi * x':
+	  'body': 'tanpi(${1:x})'
+	  'prefix': 'tanpi'
+	'Gamma Function':
+	  'body': 'tgamma(${1:x})'
+	  'prefix': 'tgamma'
+	'Round To Integer Toward Zero':
+	  'body': 'trunc(1:x)'
+	  'prefix': 'trunc'
+	'Upsample':
+	  'body': 'upsample(${1:hi}, ${2:lo})'
+	  'prefix': 'upsample'
+	'Returns Number Of Elements In a':
+	  'body': 'vec_step(${1:a})'
+	  'prefix': 'vec_step'
+	'Vector Type Hint':
+	  'body': 'vec_type_hint(${1:type})'
+	  'prefix': 'vec_type_hint'
+	'Read A Half Float From A Pointer':
+	  'body': 'vload_half(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload_half'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vload_half16(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload_half16'
+	'Read A Half Float Vector From A Pointer':
+	  'body': 'vload_half2(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload_half2'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vload_half3(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload_half3'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vload_half4(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload_half4'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vload_half8(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload_half8'
+	'Read Vectors From A Pointer':
+	  'body': 'vload16(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload16'
+	'Read Vectors From A Pointer':
+	  'body': 'vload2(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload2'
+	'Read Vectors From A Pointer':
+	  'body': 'vload3(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload3'
+	'Read Vectors From A Pointer':
+	  'body': 'vload4(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload4'
+	'Read Vectors From A Pointer':
+	  'body': 'vload8(${1:offset}, ${2:ptr})'
+	  'prefix': 'vload8'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vloada_half16(${1:offset}, ${2:ptr})'
+	  'prefix': 'vloada_half16'
+	'Read A Half Float Vector From A Pointer':
+	  'body': 'vloada_half2(${1:offset}, ${2:ptr})'
+	  'prefix': 'vloada_half2'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vloada_half3(${1:offset}, ${2:ptr})'
+	  'prefix': 'vloada_half3'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vloada_half4(${1:offset}, ${2:ptr})'
+	  'prefix': 'vloada_half4'
+	'Read Half Float Vector From A Pointer':
+	  'body': 'vloada_half8(${1:offset}, ${2:ptr})'
+	  'prefix': 'vloada_half8'
+	'Convert Float To Half And Write To Memory':
+	  'body': 'vstore_half(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half16(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half16'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half16_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half16_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half16_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half16_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half16_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half16_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half16_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half16_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half2(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half2'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half2_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half2_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half2_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half2_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half2_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half2_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half2_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half2_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half3(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half3'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half3_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half3_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half3_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half3_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half3_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half3_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half3_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half3_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half4(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half4'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half4_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half4_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half4_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half4_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half4_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half4_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half4_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half4_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half8(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half8'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half8_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half8_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half8_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half8_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half8_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half8_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstore_half8_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore_half8_rtz'
+	'Write Vector To Memory':
+	  'body': 'vstore16(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore16'
+	'Write Vector To Memory':
+	  'body': 'vstore2(${1:data}, ${2:offset}, ${ptr})'
+	  'prefix': 'vstore2'
+	'Write Vector To Memory':
+	  'body': 'vstore3(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore3'
+	'Write Vector To Memory':
+	  'body': 'vstore4(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore4'
+	'Write Vector To Memory':
+	  'body': 'vstore8(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstore8'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half16(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half16'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half16_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half16_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half16_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half16_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half16_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half16_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half16_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half16_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half2(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half2'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half2_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half2_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half2_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half2_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half2_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half2_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half2_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half2_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half3(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half3'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half3_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half3_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half3_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half3_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half3_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half3_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half3_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half3_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half4(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half4'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half4_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half4_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half4_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half4_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half4_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half4_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half4_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half4_rtz'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half8(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half8'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half8_rte(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half8_rte'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half8_rtn(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half8_rtn'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half8_rtp(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half8_rtp'
+	'Convert Float Vector To Half Vector And Write To Memory':
+	  'body': 'vstorea_half8_rtz(${1:data}, ${2:offset}, ${3:ptr})'
+	  'prefix': 'vstorea_half8_rtz'
+	'Waits For Events':
+	  'body': 'wait_group_events(${1:num_events}, ${2:event_list})'
+	  'prefix': 'wait_group_events'
+	'Write Color To Image Float':
+	  'body': 'write_image(${1:image}, ${2:coord}, ${3:color})'
+	  'prefix': 'write_imagef'
+	'Write Color To Image Half Float':
+	  'body': 'write_imageh(${1:image}, ${2:coord}, ${3:color})'
+	  'prefix': 'write_imageh'
+	'Write Color To Image Integer':
+	  'body': 'write_imagei(${1:image}, ${2:coord}, ${3:color})'
+	  'prefix': 'write_imagei'
+	'Write Color To Image Unsigned Integer':
+	  'body': 'write_imageui(${1:image}, ${2:coord}, ${3:color})'
+	  'prefix': 'write_imageui'
+	'Write Mem Fence':
+	  'body': 'write_mem_fence(${1:flags})'
+	  'prefix': 'write_mem_fence'
   'do ... while':
     'prefix': 'do'
     'body': 'do {\n\t${0:/* code */}\n} while(${1:/* condition */});'
@@ -19,10 +2779,492 @@
     'body': '${1:void} ${2:method}()\n{\n\t${0:/* code */}\n}'
   'struct':
     'prefix': 'struct'
-    'body': 'struct ${1:/* name */} \n{\n\t${0:/* data */}\n};'
+    'body': 'struct ${1:/* name */} \n{\n\t${0:/* data */}\n}${3:;}'
   'switch ...':
     'prefix': 'switch'
     'body': 'switch(${1:/* statement */})\n{\n\tcase ${0:/* expression */}:\n\tdefault:\n}'
   'while ...':
     'prefix': 'while'
     'body': 'while (${1:/* condition */})\n{\n\t${0:/* code */}\n}'
+'.source.c':
+	'Builds (Compiles And Links) A Program':
+	  'body': 'clBuildProgram(${1:program}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:pfn_notify}, ${6:user_data})'
+	  'prefix': 'clBuildProgram'
+	'Compiles A Program\'s Source':
+	  'body': 'clCompileProgram(${1:program}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:num_input_headers}, ${6:input_headers}, ${7:header_include_names}, ${8:pfn_notify}, ${9:user_data})'
+	  'prefix': 'clCompileProgram'
+	'Creates A Buffer Object':
+	  'body': 'clCreateBuffer(${1:context}, ${2:flags}, ${3:size}, ${4:host_ptr}, ${5:errcode_ret})'
+	  'prefix': 'clCreateBuffer'
+	'Create A Command Queue On A Device':
+	  'body': 'clCreateCommandQueue(${1:context}, ${2:device}, ${3:properties}, ${4:errcode_ret})'
+	  'prefix': 'clCreateCommandQueue'
+	'Creates An OpenCL Context':
+	  'body': 'clCreateContext(${1:properties}, ${2:num_devices}, ${3:devices}, ${4:pfn_notify}, ${5:user_data}, ${6:errcode_ret})'
+	  'prefix': 'clCreateContext'
+	'Create An OpenCL Context From Device Type':
+	  'body': 'clCreateContextFromType(${1:properties}, ${2:device_type}, ${3:pfn_notify}, ${4:user_data}, ${5:errcode_ret})'
+	  'prefix': 'clCreateContextFromType'
+	'Creates A 1D Image, 1D Image Buffer, 1D Image Array, 2D Image, 2D Image Array or 3D Image':
+	  'body': 'clCreateImage(${1:context}, ${2:flags}, ${3:image_format}, ${4:image_desc}, ${5:host_ptr}, ${6:errcode_ret})'
+	  'prefix': 'clCreateImage'
+	'Creates A Kernel Object':
+	  'body': 'clCreateKernel(${1:program}, ${2:kernel_name}, ${3:errcode_ret})'
+	  'prefix': 'clCreateKernel'
+	'Creates Kernel Objects For All Kernel Functions In Program Object':
+	  'body': 'clCreateKernelsInProgram(${1:program}, ${2:num_kernels}, ${3:kernels}, ${4:num_kernels_ret})'
+	  'prefix': 'clCreateKernelsInProgram'
+	'Creates Program With Binary':
+	  'body': 'clCreateProgramWithBinary(${1:context}, ${2:num_devices}, ${3:device_list}, ${4:lengths}, ${5:binaries}, ${6:binary_status}, ${7:errcode_ret})'
+	  'prefix': 'clCreateProgramWithBinary'
+	'Creates A Program With Built In Kernels':
+	  'body': 'clCreateProgramWithBuiltInKernels(${1:context}, ${2:num_devices}, ${3:device_list}, ${4:kernel_names}, ${5:errcode_ret})'
+	  'prefix': 'clCreateProgramWithBuiltInKernels'
+	'Creates A Program Object From Source':
+	  'body': 'clCreateProgramWithSource(${1:context}, ${2:count}, ${3:strings}, ${4:lengths}, ${5:errcode_ret})'
+	  'prefix': 'clCreateProgramWithSource'
+	'Creates A Sampler Object':
+	  'body': 'clCreateSampler(${1:context}, ${2:normalized_coords}, ${3:addressing_mode}, ${4:filter_mode}, ${5:errcode_ret})'
+	  'prefix': 'clCreateSampler'
+	'Creates A New Buffer Object From An Existing Buffer Object':
+	  'body': 'clCreateSubBuffer(${1:buffer}, ${2:flags}, ${3:buffer_create_type}, ${4:buffer_create_info}, ${5:errcode_ret})'
+	  'prefix': 'clCreateSubBuffer'
+	'Creates An Array Of Sub-Devices':
+	  'body': 'clCreateSubDevices(${1:in_device}, ${2:properties}, ${3:num_devices}, ${4:out_devices}, ${5:num_devices_ret})'
+	  'prefix': 'clCreateSubDevices'
+	'Creates A User Event Object':
+	  'body': 'clCreateUserEvent(${1:context}, ${2:errcode_ret})'
+	  'prefix': 'clCreateUserEvent'
+	'A Syncronization Point That Enqueues A Barrier Operation':
+	  'body': 'clEnqueueBarrierWithWaitList(${1:command_queue}, ${2:num_events_in_wait_list}, ${3:event_wait_list}, ${4:event})'
+	  'prefix': 'clEnqueueBarrierWithWaitList'
+	'Enqueues A Command To Copy From One Buffer To Another':
+	  'body': 'clEnqueueCopyBuffer(${1:command_queue}, ${2:src_buffer}, ${3:dst_buffer}, ${4:src_offset}, ${5:dst_offset}, ${6:size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyBuffer'
+	'Enqueue A Command To Copy A Rectangular Region From One Buffer To Another':
+	  'body': 'clEnqueueCopyBufferRect(${1:command_queue}, ${2:src_buffer}, ${3:dst_buffer}, ${4:src_origin}, ${5:dst_origin}, ${6:region}, ${7:src_row_pitch}, ${8:src_slice_pitch}, ${9:dst_row_pitch}, ${10:dst_slice_pitch}, ${11:num_events_in_wait_list}, ${12:event_wait_list}, ${13:event})'
+	  'prefix': 'clEnqueueCopyBufferRect'
+	'Enqueues A Command To Copy A Buffer To An Image':
+	  'body': 'clEnqueueCopyBufferToImage(${1:command_queue}, ${2:src_buffer}, ${3:dst_image}, ${4:src_offset}, ${5:dst_origin}, ${6:region}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyBufferToImage'
+	'Enqueues A Command To Copy Images':
+	  'body': 'clEnqueueCopyImage(${1:command_queue}, ${2:src_image}, ${3:dst_image}, ${4:src_origin}, ${5:dst_origin}, ${6:region}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyImage'
+	'Enqueues A Command To Copy And Image To A Buffer':
+	  'body': 'clEnqueueCopyImageToBuffer(${1:command_queue}, ${2:src_image}, ${3:dst_buffer}, ${4:src_origin}, ${5:region}, ${6:dst_offset}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyImageToBuffer'
+	'Enqueue A Command To Fill A Buffer With A Pattern':
+	  'body': 'clEnqueueFillBuffer(${1:command_queue}, ${2:buffer}, ${3:pattern}, ${4:pattern_size}, ${5:offset}, ${6:size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueFillBuffer'
+	'Enqueues A Command To Fill An Image With A Specified Color':
+	  'body': 'clEnqueueFillImage(${1:command_queue}, ${2:image}, ${3:fill_color}, ${4:origin}, ${5:region}, ${6:num_events_in_wait_list}, ${7:event_wait_list}, ${8:event})'
+	  'prefix': 'clEnqueueFillImage'
+	'Enqueues A Command To Map A Region Of The Buffer To Host Address Space':
+	  'body': 'clEnqueueMapBuffer(${1:command_queue}, ${2:buffer}, ${3:blocking_map}, ${4:map_flags}, ${5:offset}, ${6:size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event}, ${10:errcode_ret})'
+	  'prefix': 'clEnqueueMapBuffer'
+	'Enqueues A Command To Map A Image Region To Host Address Space':
+	  'body': 'clEnqueueMapImage(${1:command_queue}, ${2:image}, ${3:blocking_map}, ${4:map_flags}, ${5:origin}, ${6:region}, ${7:image_row_pitch}, ${8:image_slice_pitch}, ${9:num_events_in_wait_list}, ${10:event_wait_list}, ${11:event}, ${12:errcode_ret})'
+	  'prefix': 'clEnqueueMapImage'
+	'Enqueues A Marker Command Which Waits For Events Or Enqueued Command To Complete':
+	  'body': 'clEnqueueMarkerWithWaitList(${1:command_queue}, ${2:num_events_in_wait_list}, ${3:event_wait_list}, ${4:event})'
+	  'prefix': 'clEnqueueMarkerWithWaitList'
+	'Enqueues A Command To Indicate Which Device A Set Of Memory Objects Should Be Associated':
+	  'body': 'clEnqueueMigrateMemObjects(${1:commang_queue}, ${2:num_mem_objects}, ${3:mem_objects}, ${4:flags}, ${5:num_events_in_wait_list}, ${6:event_wait_list}, ${7:event})'
+	  'prefix': 'clEnqueueMigrateMemObjects'
+	'Enqueues A Command To Execute A Native C/C++ Function':
+	  'body': 'clEnqueueNativeKernel(${1:command_queue}, ${2:user_func}, ${3:args}, ${4:cb_args}, ${5:num_mem_objects}, ${6:mem_list}, ${7:args_mem_loc}, ${8:num_events_in_wait_list}, ${9:event_wait_list}, ${10:event})'
+	  'prefix': 'clEnqueueNativeKernel'
+	'Enqueues A Command To Execute A Kernel':
+	  'body': 'clEnqueueNDRangeKernel(${1:command_queue}, ${2:kernel}, ${3:work_dim}, ${4:global_work_offset}, ${5:global_work_size}, ${6:local_work_size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueNDRangeKernel'
+	'Enqueue Commands To Read From Buffer To Host Memory':
+	  'body': 'clEnqueueReadBuffer(${1:command_queue}, ${2:buffer}, ${3:blocking_read}, ${4:offset}, ${5:size}, ${6:ptr}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueReadBuffer'
+	'Enqueue Commands To Read From Rectangular Region Of Buffer To Host':
+	  'body': 'clEnqueueReadBufferRect(${1:command_queue}, ${2:buffer}, ${3:blocking_read}, ${4:buffer_origin}, ${5:host_origin}, ${6:region}, ${7:buffer_row_pitch}, ${8:buffer_slice_pitch}, ${9:host_row_pitch}, ${10:host_slice_pitch}, ${11:ptr}, ${12:num_events_in_wait_list}, ${13:event_wait_list}, ${14:event})'
+	  'prefix': 'clEnqueueReadBufferRect'
+	'Enqueue Commands To Read From An Image Or Image Array To Host Memory':
+	  'body': 'clEnqueueReadImage(${1:command_queue}, ${2:image}, ${3:blocking_read}, ${4:origin}, ${5:region}, ${6:row_pitch}, ${7:slice_pitch}, ${8:ptr}, ${9:num_events_in_wait_list}, ${10:event_wait_list}, ${11:event})'
+	  'prefix': 'clEnqueueReadImage'
+	'Enqueues A Command To Execute A Kernel':
+	  'body': 'clEnqueueTask(${1:command_queue}, ${2:kernel}, ${3:num_events_in_wait_list}, ${4:event_wait_list}, ${5:event})'
+	  'prefix': 'clEnqueueTask'
+	'Enqueues A Command To Unmap Previously Mapped Region Of Memory':
+	  'body': 'clEnqueueUnmapMemObject(${1:command_queue}, ${2:memobj}, ${3:mapped_ptr}, ${4:num_events_in_wait_list}, ${5:event_wait_list}, ${6:event})'
+	  'prefix': 'clEnqueueUnmapMemObject'
+	'Enqueue Commands To Write From Host Memory To Buffer':
+	  'body': 'clEnqueueWriteBuffer(${1:command_queue}, ${2:buffer}, ${3:blocking_write}, ${4:offset}, ${5:size}, ${6:ptr}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueWriteBuffer'
+	'Enqueue Commands To Write Rectangular Region From Host To Buffer':
+	  'body': 'clEnqueueWriteBufferRect(${1:command_queue}, ${2:buffer}, ${3:blocking_write}, ${4:buffer_origin}, ${5:host_origin}, ${6:region}, ${7:buffer_row_pitch}, ${8:buffer_slice_pitch}, ${9:host_row_pitch}, ${10:host_slice_pitch}, ${11:ptr}, ${12:num_events_in_wait_list}, ${13:event_wait_list}, ${14:event})'
+	  'prefix': 'clEnqueueWriteBufferRect'
+	'Enqueues A Command To Write To An Image Or Image Array From Host Memory':
+	  'body': 'clEnqueueWriteImage(${1:command_queue}, ${2:image}, ${3:blocking_write}, ${4:origin}, ${5:region}, ${6:input_row_pitch}, ${7:input_slice_pitch}, ${8:ptr}, ${9:num_events_in_wait_list}, ${10:event_wait_list}, ${11:event})'
+	  'prefix': 'clEnqueueWriteImage'
+	'Block Until All Previously Queued Commands Complete':
+	  'body': 'clFinish(${1:command_queue})'
+	  'prefix': 'clFinish'
+	'Issues All Previously Queued Commands In Command Queue':
+	  'body': 'clFlush(${1:command_queue})'
+	  'prefix': 'clFlush'
+	'Query Information About A Command Queue':
+	  'body': 'clGetCommandQueueInfo(${1:command_queue}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetCommandQueueInfo'
+	'Query Information About A Context':
+	  'body': 'clGetContextInfo(${1:context}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetContextInfo'
+	'Obtain List Of Devices Available':
+	  'body': 'clGetDeviceIDs(${1:platform}, ${2:device_type}, ${3:num_entries}, ${4:devices}, ${5:num_devices})'
+	  'prefix': 'clGetDeviceIDs'
+	'Get Information About A Device':
+	  'body': 'clGetDeviceInfo(${1:device}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetDeviceInfo'
+	'Returns Information About The Event Object':
+	  'body': 'clGetEventInfo(${1:event}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetEventInfo'
+	'Returns Profiling Information For The Command Associated With Event If Profiling Is Enabled':
+	  'body': 'clGetEventProfilingInfo(${1:event}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetEventProfilingInfo'
+	'Get Information Specific To An Image Object':
+	  'body': 'clGetImageInfo(${1:image}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetImageInfo'
+	'Returns Information About The Arguments Of A Kernel':
+	  'body': 'clGetKernelArgInfo(${1:kernel}, ${2:arg_indx}, ${3:param_name}, ${4:param_value_size}, ${5:param_value}, ${6:param_value_size_ret})'
+	  'prefix': 'clGetKernelArgInfo'
+	'Returns Information About The Kernel Object':
+	  'body': 'clGetKernelInfo(${1:kernel}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetKernelInfo'
+	'Returns Information About The Kernel Object That May Be Device Specific':
+	  'body': 'clGetKernelWorkGroupInfo(${1:kernel}, ${2:device}, ${3:param_name}, ${4:param_value_size}, ${5:param_value}, ${6:param_value_size_ret})'
+	  'prefix': 'clGetKernelWorkGroupInfo'
+	'Get Information That Is Common To All Memory Objects':
+	  'body': 'clGetMemObjectInfo(${1:memobj}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetMemObjectInfo'
+	'Get List Of Platforms Available':
+	  'body': 'clGetPlatformIDs(${1:num_entries}, ${2:platforms}, ${3:num_platforms})'
+	  'prefix': 'clGetPlatformIDs'
+	'Get Information About OpenCL Platform':
+	  'body': 'clGetPlatformInfo(${1:platform}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetPlatformInfo'
+	'Returns Build Information For Each Device In The Program Object':
+	  'body': 'clGetProgramBuildInfo(${1:program}, ${2:device}, ${3:param_name}, ${4:param_value_size}, ${5:param_value}, ${6:param_value_size_ret})'
+	  'prefix': 'clGetProgramBuildInfo'
+	'Returns Information About The Program Object':
+	  'body': 'clGetProgramInfo(${1:program}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetProgramInfo'
+	'Returns Information About The Sampler Object':
+	  'body': 'clGetSamplerInfo(${1:sampler}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetSamplerInfo'
+	'Get The List Of Supported Image Formats':
+	  'body': 'clGetSupportedImageFormats(${1:context}, ${2:flags}, ${3:image_type}, ${4:num_entries}, ${5:image_formats}, ${6:num_image_formats})'
+	  'prefix': 'clGetSupportedImageFormats'
+	'Links A Set Of Compiled Program Object And Libraries':
+	  'body': 'clLinkProgram(${1:context}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:num_input_programs}, ${6:input_programs}, ${7:pfn_notify}, ${8:user_data}, ${9:errcode_ret})'
+	  'prefix': 'clLinkProgram'
+	'Decremenets The Command Queue Reference Count':
+	  'body': 'clReleaseCommandQueue(${1:command_queue})'
+	  'prefix': 'clReleaseCommandQueue'
+	'Decremenet The Context Reference Count':
+	  'body': 'clReleaseContext(${1:context})'
+	  'prefix': 'clReleaseContext'
+	'Decrements The Device Reference Count':
+	  'body': 'clReleaseDevice(${1:device})'
+	  'prefix': 'clReleaseDevice'
+	'Decremenets The Event Reference Count':
+	  'body': 'clReleaseEvent(${1:event})'
+	  'prefix': 'clReleaseEvent'
+	'Decrements The Kernel Reference Count':
+	  'body': 'clReleaseKernel(${1:kernel})'
+	  'prefix': 'clReleaseKernel'
+	'Decremenets The Memory Object Reference Count':
+	  'body': 'clReleaseMemObject(${1:memobj})'
+	  'prefix': 'clReleaseMemObject'
+	'Decrements The Program Reference Count':
+	  'body': 'clReleaseProgram(${1:program})'
+	  'prefix': 'clReleaseProgram'
+	'Decrements The Sampler Reference Count':
+	  'body': 'clReleaseSampler(${1:sampler})'
+	  'prefix': 'clReleaseSampler'
+	'Incremenets The Command Queue Reference Count':
+	  'body': 'clRetainCommandQueue(${1:command_queue})'
+	  'prefix': 'clRetainCommandQueue'
+	'Increment The Context Reference Count':
+	  'body': 'clRetainContext(${1:context})'
+	  'prefix': 'clRetainContext'
+	'Incremenets The Devices Reference Count':
+	  'body': 'clRetainDevice(${1:device})'
+	  'prefix': 'clRetainDevice'
+	'Incremenets The Event Reference Count':
+	  'body': 'clRetainEvent(${1:event})'
+	  'prefix': 'clRetainEvent'
+	'Increments The Kernel Object Reference Count':
+	  'body': 'clRetainKernel(${1:kernel})'
+	  'prefix': 'clRetainKernel'
+	'Incremenets The Memory Object Reference Count':
+	  'body': 'clRetainMemObject(${1:memobj})'
+	  'prefix': 'clRetainMemObject'
+	'Incremenets The Program Reference Count':
+	  'body': 'clRetainProgram(${1:program})'
+	  'prefix': 'clRetainProgram'
+	'Incremenets The Sampler Reference Count':
+	  'body': 'clRetainSampler(${1:sampler})'
+	  'prefix': 'clRetainSampler'
+	'Registers A User Callback Function For A Specific Command Execution Status':
+	  'body': 'clSetEventCallback(${1:event}, ${2:command_exec_callback_type}, ${3:pfn_event_notify}, ${4:user_data})'
+	  'prefix': 'clSetEventCallback'
+	'Set Kernel Argument Value':
+	  'body': 'clSetKernelArg(${1:kernel}, ${2:arg_indx}, ${3:arg_size}, ${4:arg_value})'
+	  'prefix': 'clSetKernelArg'
+	'Registers A User Callback Function With A Memory Object':
+	  'body': 'clSetMemObjectDestructorCallback(${1:memobj}, ${2:pfn_notify}, ${3:user_data})'
+	  'prefix': 'clSetMemObjectDestructorCallback'
+	'Set The Execution Status Of A User Event Obect':
+	  'body': 'clSetUserEventStatus(${1:event}, ${2:execution_status})'
+	  'prefix': 'clSetUserEventStatus'
+	'Allows The Implementation To Release Allocated For The OpenCL Compiler':
+	  'body': 'clUnloadPlatformComplier(${1:platform})'
+	  'prefix': 'clUnloadPlatformComplier'
+	'Waits On The Host Thread For Events In List':
+	  'body': 'clWaitForEvents(${1:num_events}, ${2:event_list})'
+	  'prefix': 'clWaitForEvents'
+'.source.cpp':
+	'Builds (Compiles And Links) A Program':
+	  'body': 'clBuildProgram(${1:program}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:pfn_notify}, ${6:user_data})'
+	  'prefix': 'clBuildProgram'
+	'Compiles A Program\'s Source':
+	  'body': 'clCompileProgram(${1:program}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:num_input_headers}, ${6:input_headers}, ${7:header_include_names}, ${8:pfn_notify}, ${9:user_data})'
+	  'prefix': 'clCompileProgram'
+	'Creates A Buffer Object':
+	  'body': 'clCreateBuffer(${1:context}, ${2:flags}, ${3:size}, ${4:host_ptr}, ${5:errcode_ret})'
+	  'prefix': 'clCreateBuffer'
+	'Create A Command Queue On A Device':
+	  'body': 'clCreateCommandQueue(${1:context}, ${2:device}, ${3:properties}, ${4:errcode_ret})'
+	  'prefix': 'clCreateCommandQueue'
+	'Creates An OpenCL Context':
+	  'body': 'clCreateContext(${1:properties}, ${2:num_devices}, ${3:devices}, ${4:pfn_notify}, ${5:user_data}, ${6:errcode_ret})'
+	  'prefix': 'clCreateContext'
+	'Create An OpenCL Context From Device Type':
+	  'body': 'clCreateContextFromType(${1:properties}, ${2:device_type}, ${3:pfn_notify}, ${4:user_data}, ${5:errcode_ret})'
+	  'prefix': 'clCreateContextFromType'
+	'Creates A 1D Image, 1D Image Buffer, 1D Image Array, 2D Image, 2D Image Array or 3D Image':
+	  'body': 'clCreateImage(${1:context}, ${2:flags}, ${3:image_format}, ${4:image_desc}, ${5:host_ptr}, ${6:errcode_ret})'
+	  'prefix': 'clCreateImage'
+	'Creates A Kernel Object':
+	  'body': 'clCreateKernel(${1:program}, ${2:kernel_name}, ${3:errcode_ret})'
+	  'prefix': 'clCreateKernel'
+	'Creates Kernel Objects For All Kernel Functions In Program Object':
+	  'body': 'clCreateKernelsInProgram(${1:program}, ${2:num_kernels}, ${3:kernels}, ${4:num_kernels_ret})'
+	  'prefix': 'clCreateKernelsInProgram'
+	'Creates Program With Binary':
+	  'body': 'clCreateProgramWithBinary(${1:context}, ${2:num_devices}, ${3:device_list}, ${4:lengths}, ${5:binaries}, ${6:binary_status}, ${7:errcode_ret})'
+	  'prefix': 'clCreateProgramWithBinary'
+	'Creates A Program With Built In Kernels':
+	  'body': 'clCreateProgramWithBuiltInKernels(${1:context}, ${2:num_devices}, ${3:device_list}, ${4:kernel_names}, ${5:errcode_ret})'
+	  'prefix': 'clCreateProgramWithBuiltInKernels'
+	'Creates A Program Object From Source':
+	  'body': 'clCreateProgramWithSource(${1:context}, ${2:count}, ${3:strings}, ${4:lengths}, ${5:errcode_ret})'
+	  'prefix': 'clCreateProgramWithSource'
+	'Creates A Sampler Object':
+	  'body': 'clCreateSampler(${1:context}, ${2:normalized_coords}, ${3:addressing_mode}, ${4:filter_mode}, ${5:errcode_ret})'
+	  'prefix': 'clCreateSampler'
+	'Creates A New Buffer Object From An Existing Buffer Object':
+	  'body': 'clCreateSubBuffer(${1:buffer}, ${2:flags}, ${3:buffer_create_type}, ${4:buffer_create_info}, ${5:errcode_ret})'
+	  'prefix': 'clCreateSubBuffer'
+	'Creates An Array Of Sub-Devices':
+	  'body': 'clCreateSubDevices(${1:in_device}, ${2:properties}, ${3:num_devices}, ${4:out_devices}, ${5:num_devices_ret})'
+	  'prefix': 'clCreateSubDevices'
+	'Creates A User Event Object':
+	  'body': 'clCreateUserEvent(${1:context}, ${2:errcode_ret})'
+	  'prefix': 'clCreateUserEvent'
+	'A Syncronization Point That Enqueues A Barrier Operation':
+	  'body': 'clEnqueueBarrierWithWaitList(${1:command_queue}, ${2:num_events_in_wait_list}, ${3:event_wait_list}, ${4:event})'
+	  'prefix': 'clEnqueueBarrierWithWaitList'
+	'Enqueues A Command To Copy From One Buffer To Another':
+	  'body': 'clEnqueueCopyBuffer(${1:command_queue}, ${2:src_buffer}, ${3:dst_buffer}, ${4:src_offset}, ${5:dst_offset}, ${6:size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyBuffer'
+	'Enqueue A Command To Copy A Rectangular Region From One Buffer To Another':
+	  'body': 'clEnqueueCopyBufferRect(${1:command_queue}, ${2:src_buffer}, ${3:dst_buffer}, ${4:src_origin}, ${5:dst_origin}, ${6:region}, ${7:src_row_pitch}, ${8:src_slice_pitch}, ${9:dst_row_pitch}, ${10:dst_slice_pitch}, ${11:num_events_in_wait_list}, ${12:event_wait_list}, ${13:event})'
+	  'prefix': 'clEnqueueCopyBufferRect'
+	'Enqueues A Command To Copy A Buffer To An Image':
+	  'body': 'clEnqueueCopyBufferToImage(${1:command_queue}, ${2:src_buffer}, ${3:dst_image}, ${4:src_offset}, ${5:dst_origin}, ${6:region}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyBufferToImage'
+	'Enqueues A Command To Copy Images':
+	  'body': 'clEnqueueCopyImage(${1:command_queue}, ${2:src_image}, ${3:dst_image}, ${4:src_origin}, ${5:dst_origin}, ${6:region}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyImage'
+	'Enqueues A Command To Copy And Image To A Buffer':
+	  'body': 'clEnqueueCopyImageToBuffer(${1:command_queue}, ${2:src_image}, ${3:dst_buffer}, ${4:src_origin}, ${5:region}, ${6:dst_offset}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueCopyImageToBuffer'
+	'Enqueue A Command To Fill A Buffer With A Pattern':
+	  'body': 'clEnqueueFillBuffer(${1:command_queue}, ${2:buffer}, ${3:pattern}, ${4:pattern_size}, ${5:offset}, ${6:size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueFillBuffer'
+	'Enqueues A Command To Fill An Image With A Specified Color':
+	  'body': 'clEnqueueFillImage(${1:command_queue}, ${2:image}, ${3:fill_color}, ${4:origin}, ${5:region}, ${6:num_events_in_wait_list}, ${7:event_wait_list}, ${8:event})'
+	  'prefix': 'clEnqueueFillImage'
+	'Enqueues A Command To Map A Region Of The Buffer To Host Address Space':
+	  'body': 'clEnqueueMapBuffer(${1:command_queue}, ${2:buffer}, ${3:blocking_map}, ${4:map_flags}, ${5:offset}, ${6:size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event}, ${10:errcode_ret})'
+	  'prefix': 'clEnqueueMapBuffer'
+	'Enqueues A Command To Map A Image Region To Host Address Space':
+	  'body': 'clEnqueueMapImage(${1:command_queue}, ${2:image}, ${3:blocking_map}, ${4:map_flags}, ${5:origin}, ${6:region}, ${7:image_row_pitch}, ${8:image_slice_pitch}, ${9:num_events_in_wait_list}, ${10:event_wait_list}, ${11:event}, ${12:errcode_ret})'
+	  'prefix': 'clEnqueueMapImage'
+	'Enqueues A Marker Command Which Waits For Events Or Enqueued Command To Complete':
+	  'body': 'clEnqueueMarkerWithWaitList(${1:command_queue}, ${2:num_events_in_wait_list}, ${3:event_wait_list}, ${4:event})'
+	  'prefix': 'clEnqueueMarkerWithWaitList'
+	'Enqueues A Command To Indicate Which Device A Set Of Memory Objects Should Be Associated':
+	  'body': 'clEnqueueMigrateMemObjects(${1:commang_queue}, ${2:num_mem_objects}, ${3:mem_objects}, ${4:flags}, ${5:num_events_in_wait_list}, ${6:event_wait_list}, ${7:event})'
+	  'prefix': 'clEnqueueMigrateMemObjects'
+	'Enqueues A Command To Execute A Native C/C++ Function':
+	  'body': 'clEnqueueNativeKernel(${1:command_queue}, ${2:user_func}, ${3:args}, ${4:cb_args}, ${5:num_mem_objects}, ${6:mem_list}, ${7:args_mem_loc}, ${8:num_events_in_wait_list}, ${9:event_wait_list}, ${10:event})'
+	  'prefix': 'clEnqueueNativeKernel'
+	'Enqueues A Command To Execute A Kernel':
+	  'body': 'clEnqueueNDRangeKernel(${1:command_queue}, ${2:kernel}, ${3:work_dim}, ${4:global_work_offset}, ${5:global_work_size}, ${6:local_work_size}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueNDRangeKernel'
+	'Enqueue Commands To Read From Buffer To Host Memory':
+	  'body': 'clEnqueueReadBuffer(${1:command_queue}, ${2:buffer}, ${3:blocking_read}, ${4:offset}, ${5:size}, ${6:ptr}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueReadBuffer'
+	'Enqueue Commands To Read From Rectangular Region Of Buffer To Host':
+	  'body': 'clEnqueueReadBufferRect(${1:command_queue}, ${2:buffer}, ${3:blocking_read}, ${4:buffer_origin}, ${5:host_origin}, ${6:region}, ${7:buffer_row_pitch}, ${8:buffer_slice_pitch}, ${9:host_row_pitch}, ${10:host_slice_pitch}, ${11:ptr}, ${12:num_events_in_wait_list}, ${13:event_wait_list}, ${14:event})'
+	  'prefix': 'clEnqueueReadBufferRect'
+	'Enqueue Commands To Read From An Image Or Image Array To Host Memory':
+	  'body': 'clEnqueueReadImage(${1:command_queue}, ${2:image}, ${3:blocking_read}, ${4:origin}, ${5:region}, ${6:row_pitch}, ${7:slice_pitch}, ${8:ptr}, ${9:num_events_in_wait_list}, ${10:event_wait_list}, ${11:event})'
+	  'prefix': 'clEnqueueReadImage'
+	'Enqueues A Command To Execute A Kernel':
+	  'body': 'clEnqueueTask(${1:command_queue}, ${2:kernel}, ${3:num_events_in_wait_list}, ${4:event_wait_list}, ${5:event})'
+	  'prefix': 'clEnqueueTask'
+	'Enqueues A Command To Unmap Previously Mapped Region Of Memory':
+	  'body': 'clEnqueueUnmapMemObject(${1:command_queue}, ${2:memobj}, ${3:mapped_ptr}, ${4:num_events_in_wait_list}, ${5:event_wait_list}, ${6:event})'
+	  'prefix': 'clEnqueueUnmapMemObject'
+	'Enqueue Commands To Write From Host Memory To Buffer':
+	  'body': 'clEnqueueWriteBuffer(${1:command_queue}, ${2:buffer}, ${3:blocking_write}, ${4:offset}, ${5:size}, ${6:ptr}, ${7:num_events_in_wait_list}, ${8:event_wait_list}, ${9:event})'
+	  'prefix': 'clEnqueueWriteBuffer'
+	'Enqueue Commands To Write Rectangular Region From Host To Buffer':
+	  'body': 'clEnqueueWriteBufferRect(${1:command_queue}, ${2:buffer}, ${3:blocking_write}, ${4:buffer_origin}, ${5:host_origin}, ${6:region}, ${7:buffer_row_pitch}, ${8:buffer_slice_pitch}, ${9:host_row_pitch}, ${10:host_slice_pitch}, ${11:ptr}, ${12:num_events_in_wait_list}, ${13:event_wait_list}, ${14:event})'
+	  'prefix': 'clEnqueueWriteBufferRect'
+	'Enqueues A Command To Write To An Image Or Image Array From Host Memory':
+	  'body': 'clEnqueueWriteImage(${1:command_queue}, ${2:image}, ${3:blocking_write}, ${4:origin}, ${5:region}, ${6:input_row_pitch}, ${7:input_slice_pitch}, ${8:ptr}, ${9:num_events_in_wait_list}, ${10:event_wait_list}, ${11:event})'
+	  'prefix': 'clEnqueueWriteImage'
+	'Block Until All Previously Queued Commands Complete':
+	  'body': 'clFinish(${1:command_queue})'
+	  'prefix': 'clFinish'
+	'Issues All Previously Queued Commands In Command Queue':
+	  'body': 'clFlush(${1:command_queue})'
+	  'prefix': 'clFlush'
+	'Query Information About A Command Queue':
+	  'body': 'clGetCommandQueueInfo(${1:command_queue}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetCommandQueueInfo'
+	'Query Information About A Context':
+	  'body': 'clGetContextInfo(${1:context}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetContextInfo'
+	'Obtain List Of Devices Available':
+	  'body': 'clGetDeviceIDs(${1:platform}, ${2:device_type}, ${3:num_entries}, ${4:devices}, ${5:num_devices})'
+	  'prefix': 'clGetDeviceIDs'
+	'Get Information About A Device':
+	  'body': 'clGetDeviceInfo(${1:device}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetDeviceInfo'
+	'Returns Information About The Event Object':
+	  'body': 'clGetEventInfo(${1:event}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetEventInfo'
+	'Returns Profiling Information For The Command Associated With Event If Profiling Is Enabled':
+	  'body': 'clGetEventProfilingInfo(${1:event}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetEventProfilingInfo'
+	'Get Information Specific To An Image Object':
+	  'body': 'clGetImageInfo(${1:image}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetImageInfo'
+	'Returns Information About The Arguments Of A Kernel':
+	  'body': 'clGetKernelArgInfo(${1:kernel}, ${2:arg_indx}, ${3:param_name}, ${4:param_value_size}, ${5:param_value}, ${6:param_value_size_ret})'
+	  'prefix': 'clGetKernelArgInfo'
+	'Returns Information About The Kernel Object':
+	  'body': 'clGetKernelInfo(${1:kernel}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetKernelInfo'
+	'Returns Information About The Kernel Object That May Be Device Specific':
+	  'body': 'clGetKernelWorkGroupInfo(${1:kernel}, ${2:device}, ${3:param_name}, ${4:param_value_size}, ${5:param_value}, ${6:param_value_size_ret})'
+	  'prefix': 'clGetKernelWorkGroupInfo'
+	'Get Information That Is Common To All Memory Objects':
+	  'body': 'clGetMemObjectInfo(${1:memobj}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetMemObjectInfo'
+	'Get List Of Platforms Available':
+	  'body': 'clGetPlatformIDs(${1:num_entries}, ${2:platforms}, ${3:num_platforms})'
+	  'prefix': 'clGetPlatformIDs'
+	'Get Information About OpenCL Platform':
+	  'body': 'clGetPlatformInfo(${1:platform}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetPlatformInfo'
+	'Returns Build Information For Each Device In The Program Object':
+	  'body': 'clGetProgramBuildInfo(${1:program}, ${2:device}, ${3:param_name}, ${4:param_value_size}, ${5:param_value}, ${6:param_value_size_ret})'
+	  'prefix': 'clGetProgramBuildInfo'
+	'Returns Information About The Program Object':
+	  'body': 'clGetProgramInfo(${1:program}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetProgramInfo'
+	'Returns Information About The Sampler Object':
+	  'body': 'clGetSamplerInfo(${1:sampler}, ${2:param_name}, ${3:param_value_size}, ${4:param_value}, ${5:param_value_size_ret})'
+	  'prefix': 'clGetSamplerInfo'
+	'Get The List Of Supported Image Formats':
+	  'body': 'clGetSupportedImageFormats(${1:context}, ${2:flags}, ${3:image_type}, ${4:num_entries}, ${5:image_formats}, ${6:num_image_formats})'
+	  'prefix': 'clGetSupportedImageFormats'
+	'Links A Set Of Compiled Program Object And Libraries':
+	  'body': 'clLinkProgram(${1:context}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:num_input_programs}, ${6:input_programs}, ${7:pfn_notify}, ${8:user_data}, ${9:errcode_ret})'
+	  'prefix': 'clLinkProgram'
+	'Decremenets The Command Queue Reference Count':
+	  'body': 'clReleaseCommandQueue(${1:command_queue})'
+	  'prefix': 'clReleaseCommandQueue'
+	'Decremenet The Context Reference Count':
+	  'body': 'clReleaseContext(${1:context})'
+	  'prefix': 'clReleaseContext'
+	'Decrements The Device Reference Count':
+	  'body': 'clReleaseDevice(${1:device})'
+	  'prefix': 'clReleaseDevice'
+	'Decremenets The Event Reference Count':
+	  'body': 'clReleaseEvent(${1:event})'
+	  'prefix': 'clReleaseEvent'
+	'Decrements The Kernel Reference Count':
+	  'body': 'clReleaseKernel(${1:kernel})'
+	  'prefix': 'clReleaseKernel'
+	'Decremenets The Memory Object Reference Count':
+	  'body': 'clReleaseMemObject(${1:memobj})'
+	  'prefix': 'clReleaseMemObject'
+	'Decrements The Program Reference Count':
+	  'body': 'clReleaseProgram(${1:program})'
+	  'prefix': 'clReleaseProgram'
+	'Decrements The Sampler Reference Count':
+	  'body': 'clReleaseSampler(${1:sampler})'
+	  'prefix': 'clReleaseSampler'
+	'Incremenets The Command Queue Reference Count':
+	  'body': 'clRetainCommandQueue(${1:command_queue})'
+	  'prefix': 'clRetainCommandQueue'
+	'Increment The Context Reference Count':
+	  'body': 'clRetainContext(${1:context})'
+	  'prefix': 'clRetainContext'
+	'Incremenets The Devices Reference Count':
+	  'body': 'clRetainDevice(${1:device})'
+	  'prefix': 'clRetainDevice'
+	'Incremenets The Event Reference Count':
+	  'body': 'clRetainEvent(${1:event})'
+	  'prefix': 'clRetainEvent'
+	'Increments The Kernel Object Reference Count':
+	  'body': 'clRetainKernel(${1:kernel})'
+	  'prefix': 'clRetainKernel'
+	'Incremenets The Memory Object Reference Count':
+	  'body': 'clRetainMemObject(${1:memobj})'
+	  'prefix': 'clRetainMemObject'
+	'Incremenets The Program Reference Count':
+	  'body': 'clRetainProgram(${1:program})'
+	  'prefix': 'clRetainProgram'
+	'Incremenets The Sampler Reference Count':
+	  'body': 'clRetainSampler(${1:sampler})'
+	  'prefix': 'clRetainSampler'
+	'Registers A User Callback Function For A Specific Command Execution Status':
+	  'body': 'clSetEventCallback(${1:event}, ${2:command_exec_callback_type}, ${3:pfn_event_notify}, ${4:user_data})'
+	  'prefix': 'clSetEventCallback'
+	'Set Kernel Argument Value':
+	  'body': 'clSetKernelArg(${1:kernel}, ${2:arg_indx}, ${3:arg_size}, ${4:arg_value})'
+	  'prefix': 'clSetKernelArg'
+	'Registers A User Callback Function With A Memory Object':
+	  'body': 'clSetMemObjectDestructorCallback(${1:memobj}, ${2:pfn_notify}, ${3:user_data})'
+	  'prefix': 'clSetMemObjectDestructorCallback'
+	'Set The Execution Status Of A User Event Obect':
+	  'body': 'clSetUserEventStatus(${1:event}, ${2:execution_status})'
+	  'prefix': 'clSetUserEventStatus'
+	'Allows The Implementation To Release Allocated For The OpenCL Compiler':
+	  'body': 'clUnloadPlatformComplier(${1:platform})'
+	  'prefix': 'clUnloadPlatformComplier'
+	'Waits On The Host Thread For Events In List':
+	  'body': 'clWaitForEvents(${1:num_events}, ${2:event_list})'
+	  'prefix': 'clWaitForEvents'
