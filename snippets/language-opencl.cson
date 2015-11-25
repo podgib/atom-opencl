@@ -2786,7 +2786,7 @@
   'while ...':
     'prefix': 'while'
     'body': 'while (${1:/* condition */})\n{\n\t${0:/* code */}\n}'
-  '.source.c':
+'.source.c':
   'Builds (Compiles And Links) A Program':
     'body': 'clBuildProgram(${1:program}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:pfn_notify}, ${6:user_data})'
     'prefix': 'clBuildProgram'
@@ -3027,7 +3027,7 @@
   'Waits On The Host Thread For Events In List':
     'body': 'clWaitForEvents(${1:num_events}, ${2:event_list})'
     'prefix': 'clWaitForEvents'
-  '.source.cpp':
+'.source.cpp':
   'Builds (Compiles And Links) A Program':
     'body': 'clBuildProgram(${1:program}, ${2:num_devices}, ${3:device_list}, ${4:options}, ${5:pfn_notify}, ${6:user_data})'
     'prefix': 'clBuildProgram'
